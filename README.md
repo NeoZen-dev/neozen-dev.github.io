@@ -1,4 +1,4 @@
-# just-the-docs-template
+# NeoZen Home
 
 This is a *bare-minimum* template to create a [Jekyll] site that:
 
@@ -122,7 +122,7 @@ The GitHub Actions workflow that builds and deploys your site to Github Pages is
 2.  Set the `working-directory` param for the Setup Ruby step.
 
     ```yaml
-    - name: Setup Ruby
+      - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.1'
@@ -134,7 +134,7 @@ The GitHub Actions workflow that builds and deploys your site to Github Pages is
 3.  Set the path param for the Upload artifact step:
 
     ```yaml
-    - name: Upload artifact
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           path: "docs/_site/"
