@@ -26,6 +26,7 @@ exclude:
   # specific to the theme website:
   - bin/
   - lib/
+  - _original/
   - "*.gemspec"
   - "*.gem"
   - LICENSE.txt
@@ -36,6 +37,7 @@ exclude:
   - CODE_OF_CONDUCT.md
   - docker-compose.yml
   - Dockerfile
+  - .idea
   # theme test code
   - fixtures/
 

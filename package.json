@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "***************** Website & Docs helper *****": "",
+    "start":"cd ../neozen-tools && npm-run-all clean build:docs && cd ../neozen-dev.github.io && npm-run-all copy:docs:neozen-tools",
+    "dev!": "bundle exec jekyll serve & (sleep 2 && npm run copy:docs:neozen-tools!)",
 
     "################# Copy Docs from other repos": "",
     "     ### Copy everything": "",
-    "copy:docs:all": "npm-run-all clean:docs:all copy:docs:neozen-tools",
+    "copy:docs:all": "npm-run-all copy:docs:neozen-tools",
 
-    "copy:docs:neozen-tools": "npm-run-all \"copy:docs:neozen-tools:*  --clean\"",
+    "copy:docs:neozen-tools": "npm-run-all \"copy:docs:neozen-tools:* --clean\"",
     "copy:docs:neozen-tools!": "npm-run-all --parallel \"copy:docs:neozen-tools:* -- --clean --watch --verbose --update\"",
 
     "     ### Copy each project docs separatelly": "Because cpx ../foo/*/bar/baz copies the whole bar/baz dirs",
