@@ -1,0 +1,50 @@
+<!DOCTYPE html><html class="default" lang="en"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>isSingle | @neozen/zen</title><meta name="description" content="Documentation for @neozen/zen"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script defer src="../assets/main.js"></script><script async src="../assets/icons.js" id="tsd-icons-script"></script><script async src="../assets/search.js" id="tsd-search-script"></script><script async src="../assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><div class="table-cell" id="tsd-search" data-base=".."><div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="../assets/icons.svg#icon-search"></use></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div><div class="field"><div id="tsd-toolbar-links"></div></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="../index.html" class="title">@neozen/zen</a></div><div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="../assets/icons.svg#icon-menu"></use></svg></a></div></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><ul class="tsd-breadcrumb"><li><a href="../modules.html">@neozen/zen</a></li><li><a href="isSingle-1.html">isSingle</a></li></ul><h1>Function isSingle</h1></div><section class="tsd-panel tsd-comment"><div class="tsd-comment tsd-typography"><p>Returns <code>true</code> if the data type is a &quot;single&quot; or &quot;plain&quot; value, in terms of NOT naturally/normally having compound or &quot;Many&quot; items (eg props, array items etc) inside it that we can iterate over.</p>
+<p>Aka and similar to Scalar or Primitive, but there are distinctions - see this answer <a href="https://stackoverflow.com/a/6628566/799502" target="_blank" class="external">https://stackoverflow.com/a/6628566/799502</a> for context.</p>
+</div><div class="tsd-comment tsd-typography"><div class="tsd-tag-See"><h4 class="tsd-anchor-link"><a id="See" class="tsd-anchor"></a>See<a href="#See" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><ul>
+<li><code>z.isSingle</code> is similar to <a href="/functions/isPrimitive.html"><code>z.isPrimitive()</code></a>, but :</li>
+<li><code>z.isSingle</code> also includes extras as &quot;singles&quot; (eg <code>Date</code> &amp; <code>RegExp</code>), as they are not considered as having arbitrary props or contents (days months minutes etc in Date don't count as user-defined props).</li>
+<li><code>z.isSingle</code> also includes boxed values of primitives (eg. <code>new Boolean(true)</code>), unlike <code>z.isPrimitive()</code> which only allows for really primitive unboxed values.</li>
+</ul>
+<p>Think of it as lodash's <em>negated</em> <code>_.isObject()</code>, which unfortunately can't be used as such cause it fails in few cases:</p>
+<pre><code>  z.isSingle(new String()) === true
+</code></pre>
+<p>but</p>
+<pre><code>  _.isObject(new String()) === true
+  _.isObject(new Date()) === true
+  _.isObject(new RegExp()) === true
+</code></pre>
+<p>For reference, <code>isSingle(value)</code> correctly recognises all of these value types:</p>
+<pre><code> 'string',
+ 'number',
+ 'boolean',
+ 'undefined',
+ 'null',
+ 'symbol',
+ 'bigint',
+
+ // extra to `isPrimitive()`:
+ 'Date',
+ 'RegExp',
+ 'function',
+ 'Promise'
+ 'NaN'
+ 'Boolean',
+ 'String',
+ 'Number'
+ 'Error'
+
+ // Special cases, as they might have many items internally, but practically they are not iterable, hence not &quot;many&quot; nor &quot;single&quot;:
+ WeakSet
+ WeakMap
+</code></pre>
+<p>irrespective of how these values are created (literal/primitive or new Xxx).</p>
+<ul>
+<li><a href="/functions/isMany.html"><code>z.isMany()</code></a> is the opposite of <code>isSingle</code></li>
+<li><a href="/functions/isPrimitive.html"><code>z.isPrimitive()</code></a> for the most basic single types</li>
+<li><a href="/variables/T_SINGLE_NAMES.html"><code>T_SINGLE_NAMES</code></a> for the string list of types that are considered &quot;Single&quot; types.</li>
+<li><a href="/types/TSingle.html"><code>TSingle</code></a> the types that are considered &quot;Single&quot;.</li>
+<li><a href="/functions/isSingleType.html"><code>isSingleType</code></a> to check if a type (not a value) is a &quot;Single&quot; type.</li>
+</ul>
+</div></div></section><section class="tsd-panel"><ul class="tsd-signatures"><li class="tsd-signature tsd-anchor-link"><a id="isSingle" class="tsd-anchor"></a><span class="tsd-kind-call-signature">is<wbr/>Single</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">value</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-kind-parameter">value</span><span class="tsd-signature-keyword"> is </span><a href="../types/Single.html" class="tsd-signature-type tsd-kind-type-alias">Single</a><a href="#isSingle" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></li><li class="tsd-description"><div class="tsd-parameters"><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameter-list"><li><span><span class="tsd-kind-parameter">value</span>: <span class="tsd-signature-type">unknown</span></span><div class="tsd-comment tsd-typography"><p>any value</p>
+</div><div class="tsd-comment tsd-typography"></div></li></ul></div><h4 class="tsd-returns-title">Returns <span class="tsd-kind-parameter">value</span><span class="tsd-signature-keyword"> is </span><a href="../types/Single.html" class="tsd-signature-type tsd-kind-type-alias">Single</a></h4><p><code>true</code> if the value is a single type</p>
+<div class="tsd-comment tsd-typography"></div><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/DevZen-net/devzen-tools/blob/d06de7dc401f4a24262e2dfefdfce62aea86b4e9/packages/zen/src/code/typezen/isSingle.ts#L171">src/code/typezen/isSingle.ts:171</a></li></ul></aside></li></ul></section></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div></div><div class="site-menu"><nav class="tsd-navigation"><a href="../modules.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="../assets/icons.svg#icon-1"></use></svg><span>@neozen/zen</span></a><ul class="tsd-small-nested-navigation" id="tsd-nav-container" data-base=".."><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html><html class="default" lang="en"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@neozen/speczen</title><meta name="description" content="Documentation for @neozen/speczen"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-search"></use></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div><div class="field"><div id="tsd-toolbar-links"></div></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">@neozen/speczen</a></div><div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><h1>@neozen/speczen</h1></div><div class="tsd-panel tsd-typography"><a id="md:speczen-v100" class="tsd-anchor"></a><h1 class="tsd-anchor-link">SpecZen v1.0.0<a href="#md:speczen-v100" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><p>Surgical Precision Testing &amp; Spec-ing.</p>
+<p>SpecZen is a Testing &quot;Spec Definition DSL&quot; and a Test Spec generator for <strong>any</strong> Test Framework (or programming language)!</p>
+<p>Bored with reading docs? Head right to the code at <code>docs/examples.prettier-ignore.ts</code> @todo: link!</p>
+<a id="md:aims--overview" class="tsd-anchor"></a><h1 class="tsd-anchor-link">Aims &amp; Overview<a href="#md:aims--overview" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><a id="md:the-big-picture" class="tsd-anchor"></a><h2 class="tsd-anchor-link">The Big Picture<a href="#md:the-big-picture" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>In the near future, AIs will be writing most of the Software code, adhering to some description, or better some Spec, while self-healing the code itself autonomously.</p>
+<p>When this time arrives, the Spec will be more important than the code. And the Spec, is more than just &quot;tests&quot; or TDD or BDD or whatever.</p>
+<p>This projects is a small step towards this direction, by offering a way to write better Specs, that are decoupled from the Test Implementation code, and can be run in any Test Framework (or programming language) you want.</p>
+<a id="md:current-aim-author-better-test-specifications--have-absolute-execution-control-on-them" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Current aim: Author better Test Specifications &amp; have absolute execution control on them!<a href="#md:current-aim-author-better-test-specifications--have-absolute-execution-control-on-them" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>SpecZen offers an awesome way to describe &amp; interactively &amp; selectively execute detailed Specs, decoupled completely from their Test implementations.</p>
+<p>This means you can use ANY Test Framework for the Test Implementation (incl. but not limited to <em>Jest</em>, <em>Mocha</em>, <em>Jasmine</em> etc).</p>
+<p>SpecZen features an awesome but trivial Spec DSL to write Spec Suites, and a Spec generator (where a Spec is a.k.a. as <em>Test Case</em>, <em>Test Definition</em> or simply <em>Test</em>). This DSL's main aim is to give you immense control on <strong>selecting exactly which tests to you want run</strong> (and which to omit).</p>
+<a id="md:spec-dsl" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Spec DSL<a href="#md:spec-dsl" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>The Spec DSL is type-safe, mostly with compile-time errors (in TypeScript), but also throws if you stuff it with wrong structure at runtime.</p>
+<p>It is a very simple language, with only a handful of keywords, that you can learn in the next 5 minutes.</p>
+<a id="md:grouping-similar-tests-with-suite" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Grouping similar tests with SUITE<a href="#md:grouping-similar-tests-with-suite" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>SpecZen has suites (<code>SUITE</code>) for organising your Specs in easy meaningful and related nested groups.</p>
+<pre><code>SUITE(`Numbers testing`, [
+  SUITE(`Addition`, [...specs...])
+  SUITE(`Division`, [...specs...])
+])
+</code></pre>
+<p>Nested Suites inherit everything from their parents, and can override. This makes life so much easier and DRY, with defaults that can be overridden as you go deeper.</p>
+<p>Suites are absolutely composable, and you can have as many levels of nesting as you want, as in other frameworks. But unlike other frameworks, your Specs will execute in the exact order you define them, the way a Human reads them!</p>
+<a id="md:filtering---more-than-only--skip" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Filtering - more than <code>ONLY</code> &amp; <code>SKIP</code><a href="#md:filtering---more-than-only--skip" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>SpecZen also has Filters such as <code>ONLY</code>ies &amp; <code>SKIP</code>ies with <strong>priority levels</strong>, that offer significant semantic and practical benefits, similarly to how <code>logLevel</code> <code>ERROR</code> VS <code>VERBOSE</code> do to logging.</p>
+<p>But, like <code>console.log()</code>, you can start just with vanilla <code>SKIP</code> &amp; <code>ONLY</code>, so you can skip the next paragraph if you want.</p>
+<a id="md:onlies-and-skipies" class="tsd-anchor"></a><h4 class="tsd-anchor-link">Onlies and Skipies<a href="#md:onlies-and-skipies" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><p>The <code>ONLY</code> family, for example <code>FOCUS</code>, <code>SOLO</code> &amp; <code>ME</code> are Onlies. The <code>SKIP</code> family, such as <code>BREAKS</code> or <code>WIP</code> are Skipies.</p>
+<p>You can use those onlies &amp; skipies, anywhere it makes sense. For one Spec, or for a whole <code>SUITE</code> and sub-<code>SUITE</code>s. You can also define regions with <code>SKIP_END</code>, <code>ONLY_END</code> &amp; <code>SKIP_MUTE</code> that give you even more immense control!</p>
+<p>@todo: example</p>
+<p>Finally, you can optionally have meta information to your Filters, eg <code>WIP('Refactoring for #456 in progress')</code> or <code>BREAKS('Not implemented yet - see #678')</code> and few more options.</p>
+<p>It's much more than <code>it.only()</code> &amp; <code>describe.skip()</code> on steroids! So, <code>SKIP</code> commenting out tests, just to run only a subset of them! Which is what all developers I 've seen do, including myself, for a long time. It sucks not only because it's time-consuming, error-prone &amp; hard to manage, but also cause all your refactorings (variable renames) might not be reflected in commented out code!</p>
+<a id="md:eaching---repeating-patterns" class="tsd-anchor"></a><h3 class="tsd-anchor-link">EACHing - Repeating Patterns<a href="#md:eaching---repeating-patterns" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>The whole of SpecZen is a repeating pattern of Specs, solving the disparity between <code>it.skip / it.only</code> and <code>it.each</code> in frameworks like Jest/Mocha, taking it further with advanced filtering to be much more than a fancy <code>it.each()</code>.</p>
+<p>The <code>EACH</code> command takes it even further: it makes it extremely easy to test slightly different sides of a feature (i.varying inputs) in place, keeping your Spec definitions as laconic as possible.</p>
+<p>Use an <code>EACH(altValue1, altValuealt2, ...)</code> instead of a value itself, to generate all Spec variations (of all alternative values permutations), while keeping the rest of the Spec as is.</p>
+<p>@todo: example</p>
+<p>You can combine multiple EACHes in each Spec (to multiply the variations) and also use it in <code>{some: {deep: {nested: {valueToCheck: EACH('value1', 'value2')}}}</code> and it will repeat this <strong>whole {some: {deep: ...}} object</strong> in separate generated Specs, with <code>valueToCheck</code> having all the alt values in each one!</p>
+<p>Finally, you can use Onlies &amp; Skipies inside <code>EACH</code> as well!</p>
+<p>And now, since it's so easy to test similar alternative Test Cases/Specs, you will! And that's how you'll reach that sweet 99.9% coverage, while remaining DRY ;-)</p>
+<a id="md:decoupling" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Decoupling<a href="#md:decoupling" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>Finally, the SpecZen philosophy will guide you to write better Test Implementation code (in the framework of your choice, eg Jest/Mocha etc), that deals with the Generic test, rather than the specific! You will stop copy-pasting similar code &quot;...because it's OK to do not be DRY in testing...&quot;. No, it's not OK, ok?</p>
+<p>Congratulations: by these few keywords and concepts, you got 90% of the SpecZen syntax! It's so simple, it's deceiving!</p>
+<p>See <code>docs/version-3-examples.ts</code> to get more of the idea!</p>
+<a id="md:future-aim-specs--documentation--examples--tutorial--executable-code--playground" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Future aim: Specs === Documentation === Examples === Tutorial === Executable Code === Playground<a href="#md:future-aim-specs--documentation--examples--tutorial--executable-code--playground" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p><strong>NOT IMPLEMENTED</strong>: Turn your Specs into Documentation. Or maybe, write your documentation as Specs? Or Both? And by documentation we don't mean the boring auto generated JSDocs of your methods. Or long Cucumber definitions that nobody wishes they had to go through. I mean <strong>real documentation</strong> users want to read, proper Examples &amp; Tutorials, even live executable code examples!</p>
+<p>Your <code>readme.md</code> or <code>examples.md</code> will no longer be disconnected from the code, perhaps getting out of date or be wrong (because it's just text). Imagine having it updated and built every time you build, as long as you write every feature worth documenting, using a special SpecZen way! See how Tests-as-docs idea started in my <a href="http://github.com/anodynos/upath" target="_blank" class="external">upath</a> and became more awesome in my <a href="http://github.com/neozen/logzen" target="_blank" class="external">LogZen</a> - to get a glimpse of what's the aim!</p>
+<p>This aim is NOT implemented in current Version.</p>
+<a id="md:what-speczen-is-not" class="tsd-anchor"></a><h2 class="tsd-anchor-link">What SpecZen is NOT<a href="#md:what-speczen-is-not" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><a id="md:compatibility" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Compatibility<a href="#md:compatibility" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li>It's NOT a Testing Framework / Test Runner etc. It's a Spec Definition DSL &amp; Spec Generator.</li>
+<li>It's NOT a replacement for Jest / Mocha / Jasmine etc. It's a great way to write your precise Specs separately from Test Implementations. Test Implementation is the code Specs run against (a.k.a their <code>SpecHandlers</code>) and those Test Implementations are written and do run in frameworks like Jest/Mocha (or anything else you want, in any programming language actually)!</li>
+<li>It's NOT about only White Box or Black Box testing, or Unit or Integration testing or what have you. It's about ALL of them, writing better Specs and having absolute control over them.</li>
+</ul>
+<a id="md:coding" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Coding<a href="#md:coding" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li>It has no <code>expect</code>-ation libraries, no code blocks, no <code>before()</code>, no <code>async foo(){}</code> or anything like that. You can express the need for any of those in your Specs (eg <code>{ thisResultShouldArriveAsync: true }</code>), and it's the Test implementation's responsibility to cater for it!</li>
+<li>You're NOT writing <strong>test code</strong>. Essentially you're writing a document that describes the Specs and which of these that should be carried out as Tests at any point in time (during development, deployment etc). The output of SpecZen is <strong>pure JSON</strong> (hence it can be wired to any framework/library/language).</li>
+</ul>
+<a id="md:users" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Users<a href="#md:users" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li>
+<p>SpecZen Users do NOT need to know or care about how these Tests will be implemented, or be the programmers that write the tests or the code under test! For example, this is valid SpecZen <code>SUITE('Daytrip to Mars', [{ flyTo: 'Mars' }])</code>, but we'll let someone else implement &amp; test it!</p>
+</li>
+<li>
+<p>It is NOT aimed only for Managers, it's aimed for both Managers &amp; Developers! For everyone! You could even write the Spec of your Life in it, and it will produce the JSON for it!</p>
+<p>SUITE(<code>My Life's Spec</code>, [
+COLUMNS('ByAge', 'DoingWhat', 'NetWorth', 'FamilySize'),</p>
+<pre><code>  [22, 'Finishing College', -100000, 1],  
+  [30, 'Best Brogrammer', 10000, 1.5],  
+  [40, 'Co-founder', -99999, 2],  
+  [50, 'CEO', 100000000, { wife: 1, kids: 3, dogs: 2, cats: 3} ],  
+</code></pre>
+<p>])</p>
+</li>
+</ul>
+<p>Good luck implementing it!</p>
+<a id="md:why-speczen" class="tsd-anchor"></a><h1 class="tsd-anchor-link">Why SpecZen?<a href="#md:why-speczen" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><p>We've all been to scenarios with thousands of tests, with hundreds for each logical or physical &quot;suites&quot;. All mocha-like frameworks have separate files, and infinite <code>describe('this', () =&gt; describe('that', () =&gt; it('should do this', () =&gt; ...)))</code> nesting. So we don't need anything else, right?</p>
+<p>Wrong!</p>
+<a id="md:dev-xperience" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Dev Xperience<a href="#md:dev-xperience" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>What if you want to run only a subset of tests, but not all of them, and you want to do it interactively, inside you code? Say you're actively working on a feature with many &quot;serial&quot; tests, many of which are broken or not yet implemented.</p>
+<p>You want to run only the ones you're <strong>really working on</strong> and care about. - You don't care about the rest of the tests:</p>
+<ul>
+<li>Test Suites - can be eliminated interactively in Jest, but this won't scale (explain)</li>
+<li>Tests below or above you just want to run the ones you're working on, and you want to do it interactively, but in code! Why? You want to send this working feature set to a branch PR for other to see, without have commented out tests.</li>
+</ul>
+<p>But you don't want to comment out the rest, and you don't want to run all the tests in the file, because:</p>
+<ul>
+<li>it takes too long,</li>
+<li>because you know they break,</li>
+<li>because they produce and a lot of logging noise (don't we all resolve to <code>logger.log()</code>?)</li>
+</ul>
+<a id="md:devops-xperience" class="tsd-anchor"></a><h2 class="tsd-anchor-link">DevOps Xperience<a href="#md:devops-xperience" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>What if you want to go ahead and commit to a branch, or even deploy from &quot;main&quot;, a version with some disabled (<code>SKIP</code>ed) tests, for a good reason? Would you comment them out? And add a @todo/@fixme comment?</p>
+<p>Would you prefer to have a way to disable them <em>meaningfully</em>, and then re-enable them easily, without having to comment out or add/remove @todo comments that report nowhere?</p>
+<p>Wouldn't you want to tag them for why they <code>BREAKS('These tests break with the new API v2, but we have disabled the functionality on the site as well. Paying customers complain but CEO said we'll leave tech dept for next year(s). See #666.')</code> and get reports and semantics over it? SpecZen enables exactly this!</p>
+<a id="md:speczen-benefits" class="tsd-anchor"></a><h2 class="tsd-anchor-link">SpecZen Benefits<a href="#md:speczen-benefits" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>SpecZen keeps your test code extremely:</p>
+<ul>
+<li>
+<p>DRY, by allowing you to define your tests in a declarative way, with minimal code or test case repetition - it does it for you!</p>
+</li>
+<li>
+<p>A mini-DSL for Test Definitions, that is:</p>
+<ul>
+<li>Concise, since you only define the Spec (a.k.a. Test Cases), and not the test code - (see <code>docs/examples.pretter-ignore.ts</code>).</li>
+<li>Incredibly Strong Typed (in TypeScript), so you want place wrong things in wrong places (see <code>typings-failing-tests.ts-NOT-ignore.prettier-ignore.ts</code> &amp; <code>typings-passing-tests.prettier-ignore.ts</code>)</li>
+</ul>
+</li>
+<li>
+<p>Terse: your tests are just Arrays of nested declarations (and nested Arrays)!</p>
+<ul>
+<li>Small tests are <strong>real one-liners</strong></li>
+<li>Large tests are easy to read in a vertical awesomeness.</li>
+<li>Editing is pure vertical editing joy: since your whole structure, is mainly an array, you can fold it/unfold it very easily.
+<ul>
+<li>Adding new fields, descriptions etc is just a breeze!</li>
+<li>Adding new Test Cases is just a breeze!</li>
+</ul>
+</li>
+<li>No more <code>describe('this', () =&gt; describe('that', () =&gt; it('should do this', () =&gt; ...)))</code> nesting &amp; copy pasting!</li>
+</ul>
+</li>
+<li>
+<p>Developer friendly: replicating tests, or base on existing tests, while being DRY, has never been easier! But most of all it forces you to write independent tests, that are not coupled to each other, and can be run in any order!</p>
+</li>
+<li>
+<p>Readable, since the focus is to describe the test scenario, not the test code. Non-technical people can literally read and write tests, and understand what they do!</p>
+</li>
+<li>
+<p>Focused, by allowing you to run only the tests you want, and skip the rest, with the <code>ONLY</code> &amp; <code>SKIP</code> commands and their priority siblings.</p>
+</li>
+<li>
+<p>Organized, by allowing you to nest suites, and have different suites &amp; sub-suites for different test scenarios, etc.</p>
+</li>
+<li>
+<p>Expressive, using the unique ways to express requirements and tests focus, without needing to be dealing on the how. A person (even non-technical) can write all the tests in advance, without having &quot;plugged&quot; the test implementation functions yet!</p>
+</li>
+<li>
+<p>Flexible, cause the tests can be refactored, changed and extended easily. Test Implementations can be amended to cater for a new feature, or a new test type, BEFORE having to write new implementations and add new duplicate code (as is often the case in testing)</p>
+</li>
+<li>
+<p>Safe, since your Suite Test Definitions are strong Typed (and also runtime are validated via ValidZen (Gen2/3)), that they have ALL the right values &amp; structure, BEFORE they arrive to Test Implementation Land. So, before you panic when your tests break and start wondering about your tests Implementation or App code, make sure the test arguments in the Definition were sane!</p>
+</li>
+<li>
+<p>Console-free filtering of tests, when you have no access to console (remote debugging anyone?), or is more convenient to have semi-permanent filtered (i.e skipped) Specs (eg <code>BREAKS('since API v2')</code>)!</p>
+</li>
+<li>
+<p>Framework/Language Independent: SpecZen in its core doesn't care if you are using Jasmine, Mocha or Jest (or add your own). Or even if you're on Javascript or Python or C++. It provides you with the Test Definitions mini-DSL, and it generates the test specs you can run in your test framework of choice. You can change frameworks easier that ever, assuming your tests are written in SpecZen &amp; you care to rewrite the implementation code (which doesnt't have to carry the Test Definitions burden). Or you could spin a web server and iterate over the Specs generated in another platform.</p>
+</li>
+</ul>
+<p>Unique features not found anywhere else! It's time to rename your Jest &amp; Mocha <code>.spec.ts</code> to <code>.test.ts</code>, cause the real Specs are here ;-)</p>
+<p><code>SUITE('GoToMars', [ONLY])</code></p>
+<p>Not believable? See <code>docs/version-3-examples.ts</code> to get more ideas!</p>
+<a id="md:speczen-features" class="tsd-anchor"></a><h1 class="tsd-anchor-link">SpecZen Features<a href="#md:speczen-features" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><a id="md:decoupling-1" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Decoupling<a href="#md:decoupling-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>SpecZen completely decouples the test code from the test runner &amp; the tests implementation.</p>
+<p>SpecZen is only the ideal Definition of <strong>What tests we should have</strong> and <strong>Which tests to run, right now</strong>. NOT how they are implemented! Even if you change your test framework, or application, or implementation language etc the SpecZen definitions will stand as they are (provided the different Application, language implementation etc have the same behavior of course).</p>
+<p>Note: Your test implementations, are written inside Jest or Mocha, or anything else you want! We mention those 2 due to popularity.</p>
+<a id="md:test-implementation-spechandler" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Test Implementation <strong>SpecHandler</strong><a href="#md:test-implementation-spechandler" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>The SpecHandler is the Test Implementation code, that takes one Specs and runs it.</p>
+<p>And it is just a <code>const divideNumbersSpecHandler = ({a, b, expected}: TNumbersSpecData) =&gt; (/* Test Implementation code*/)</code> or similar in your Mocha/Jest, or in other Testing implementation frameworks.</p>
+<p>To further decouple SpecZen and testing frameworks, you can mention the SpecHandler only by a string <code>myNumbersSpecHandler</code> in your Top-level SpecZen <code>SUITE</code> (and you can change it going forwards). YOu can have no references to the actual SpecHandler code, or the test framework it-self! The <code>SpecHandler</code> also is a very small name - like a function name, for example <code>addNumbers</code> or <code>read</code> or <code>userLogin</code> etc, as these will be few (tens, not thousands) and you don't need a complicated description here.</p>
+<a id="md:spechandler-aims" class="tsd-anchor"></a><h2 class="tsd-anchor-link"><strong>SpecHandler</strong> Aims<a href="#md:spechandler-aims" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>The tests in a SpecHandler have a <em>slightly different</em> aim, but <em>enormously better</em> way: The Holistic Generic way!</p>
+<p>In your Test Implementation <code>SpecHandler</code> you have full access to their vast library and full range of features of Mocha/Jest or whatever you 'll use. You can use Promises and <code>async</code>, and <code>before</code> etc like you would normally. You can use prerequisites and <code>before()</code> etc.</p>
+<p>The only thing SpecZen gives your SpecHandler at each <code>describe.each(handlerSpecs)</code> iteration, is a <em>Spec to execute</em>, along with some meta for your use.</p>
+<p>You write for example an <code>describe.each(addNumbersSpecs)</code> for every <code>addNumbers</code> or <code>divideNumbers</code> SpecHandler you have defined, and then you iterate over a <strong>flat list</strong> of Specs that deal with <strong>ONE specific thing</strong>, serviced by that single <code>SpecHandler</code>.</p>
+<p>For example in an API, you would test the <code>readOne</code> or the <code>update</code> method, with 2 separate SpecHandlers. But when you test the <code>update</code> success or failure parts, we suggest a single <code>SpecHandler</code> (but nothing prevents you from using separate SpecHandlers). You can have a different SpecHandler in each SUITE, but the first Top-level one is mandatory.</p>
+<a id="md:the-generic-way" class="tsd-anchor"></a><h3 class="tsd-anchor-link">The Generic way<a href="#md:the-generic-way" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>The <code>addNumbersSpecs = [{a:1, b:2, result:3}, ...]</code> is what tests should run. SpecZen generates a &quot;list&quot; of what tests should run for a particular SpecHandler, you pull and feed those into the specific implementation &quot;SpecHandler&quot; for the specific Spec family (eg an API read) via a <code>describe.each(addNumbersSpecs)</code>. The SpecHandler is written in your Test Framework (eg Jest/Mocha), using all their available features.</p>
+<p>The <code>SpecHandler</code> for <code>addNumbers</code> or <code>API read</code>, deals with all the testing complexities, all different sub-cases and is written and driven specifically by the Specs data shape, that you define!</p>
+<p>Scroll to the example below to get the idea!</p>
+<a id="md:how-is-this-even-technically-possible" class="tsd-anchor"></a><h3 class="tsd-anchor-link">How is this even technically possible?<a href="#md:how-is-this-even-technically-possible" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>Wait a minute. We can write using the full Mocha/Jest API oe whatever, async &amp; Promises, <code>before()</code> etc but there's <strong>nothing</strong> asynchronous in SpecZen. Also, there are no prerequisites, no <code>before</code>, no <code>after</code>, no <code>beforeEach</code> for the SUITES &amp; Specs etc.</p>
+<p>How do they interact?</p>
+<p>Also, there's nothing in SpecZen's code about Jest/Mocha (apart from SpecZen's own Jest Tests!). And there nothing in Jest/Mocha about SpecZen, no plugin, no import, nothing!</p>
+<p>Yet they work seamlessly together! <em>How is this even possible?</em></p>
+<p>Well, you give up one small thing: the matching of Jest / Mocha <code>describe()</code> nesting with that of <code>SUITE</code>s!</p>
+<p>Inside your perfectly valid Jest/Mocha <code>SpecHandler</code> implementations, you write your &quot;normal&quot; tests with <strong>as many nesting levels of <code>describe()</code> &amp; <code>it()</code> you need</strong>. You actually tend to write a small test facility for the feature you're testing and its nuances. Similarly, when writting the Specs with SpecZen, you use as many <code>SUITE([])</code> nesting levels as you need.</p>
+<p>Now in each <code>describe.each()</code> invocation, you deal only with a <em>flat list</em> of Specs along with some meta, that all target a specific <code>SpecHandler</code>. Additional to native Jest/Mocha nesting only inside the <code>SpecHandler</code>, SpecZen has the nested <code>SUITE([...])</code> levels implicit to the native nesting: it is part of the string description SpecZen generates. Trivial to handle, you just print this meta <code>description</code> in your 1st <code>describe()</code>!</p>
+<p>And done, that's the only sacrifice, resulting to no other interdependence's needed! No plugins or imports, no hacks, no complicated recursions, just a different Test Implementation mentality &amp; writing style. And technically, the matching of recursive <code>SUITE</code> =&gt; <code>describe()</code> seems like a huge mess.</p>
+<a id="md:generic-spechandler-example" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Generic SpecHandler Example<a href="#md:generic-spechandler-example" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Assume we want to test an API's <code>read</code> (eg HTTP GET) functionality, that returns one instance / record OR throws errors, depending on the input, who's requesting it etc. In this example, we will have one single <code>SpecHandler</code> named <code>read</code>, for success &amp; failure and other cases, cause the similarities are so many.</p>
+<p>Let's now focus on a simplified <code>SUITE('read:errors', [])</code> which has:</p>
+<pre><code>`COLUMNS('description', 'user', 'requestInstance', 'statusAndErrors')` 
+</code></pre>
+<p>One of the many Specs in <code>read:errors</code> to producing an error could look like:</p>
+<pre><code>```
+  [
+    `Throws NOT_FOUND if ${entityName}Id really doesnt exists, with SuperAdmin / NO AuthZen`,
+    superAdminEmployee,
+    { id: 999 },
+    [HttpStatus.NOT_FOUND, `ApiZen: NOT_FOUND (404): ${entityName} with ids [999]`],
+  ],
+```
+</code></pre>
+<p>Note that our instance data is just <code>{ id: 999 }</code>, cause in errors there's no other result that needs to be checked, just the errors!</p>
+<p>Remember, the values in the Spec are entirely up to you, and the same is the Implementation Spec <em>SpecHandler</em>. You can pass via <code>Spec</code> any flag or SpecHandler mini-config to drive your SpecHandler.</p>
+<p>Let's see how this Test Implementation <code>SpecHandler</code> would look like:</p>
+<p>// @todo: bring up to date</p>
+<pre><code>    ```typescript
+    // Test Implementation SpecHandler for read:errors
+
+    // This 1st line is the only &quot;interface&quot; between SpecZen &amp; Jest: Specs and describe's description!
+    describe.each(READ_Specs)(`Spec: ${configurableSpecZenSpecDescriptionWithNesting}`,
+    
+    // Then it gives you the Spec data, in the shape you defined, and gets out of 
+    // your way, so you can write your normal (but Generic) SpecHandler in Jest, using full Jest!
+
+      ({
+        description,
+        user,
+        instance,
+        statusAndErrors: [expectedStatus, errorMessage],
+        // other fields, used in other cases of read
+      }) =&gt; {
+        const url = `/${entityName}/${instance.id}`
+        let res
+        beforeAll(async () =&gt; res = await rpAPI('get', url, user))
+
+        describe(`--&gt; Invoked GET &quot;${serverURL}${url}&quot; returns an &quot;${entityName}&quot; instance allowed for ${user.name}`, () =&gt; {
+          it(`has right HttpStatus.${HttpStatus[expectedStatus]}`, () =&gt;
+            expect(res.statusCode).toBe(expectedStatus))
+    
+          if (expectedStatus === HttpStatus.OK) {
+            it(`with right body`, () =&gt; {
+              expect(res.body).toMatch(instance)
+            })
+            /**
+             * You can/ought to check a lot more here, like it has the right allowed attributes depending on user.roles() and many other things or complicated scenarios.
+             *
+             * You tend to fit as many checks as you can think that are *relevant* to reading an instance, and then what Spec data would be needed to trigger this behavior. This happens with a field in COLUMNS such as options etc, and then cater for it here!
+             */
+          } else
+            it(`Starts with the right errorMessage \n&quot;${errorMessage}&quot;`, () =&gt;
+              expect(res.error.message).toStartWith(errorMessage))
+        })
+    })
+    ```
+</code></pre>
+<p>As you can see, it deals not only with <code>read:errors</code> but with the whole <code>read</code> operation. There is a branch to check for errors, and another for success.</p>
+<p>This way, many different but similar <code>read</code> Specs make sense to use the same <code>SpecHandler</code>. This way, you can add more <code>Spec</code>s easily, without having to duplicate code, but perhaps some small addition to the Test Implementation <code>SpecHandler</code>!</p>
+<p>You could of course have separate <code>SpecHandler</code> for success and failure, and it's a matter of taste. But SpecZen favors grouping together similar <code>Spec</code>s, and have a single <code>SpecHandler</code> for them.</p>
+<p>What about SUITEs? How do they relate to <code>SpecHandler</code>s?</p>
+<p>Multiple SUITES, especially nested ones, can (and should) have the same SpecHandler. For example using just a <code>read</code> SpecHandler, we can have nested suites like:</p>
+<pre><code>```
+SUITE({specHandler: 'read'}, [
+  SUITE({name: 'read:errors'}, [
+    SUITE({name: 'read:errors:authorization'}, [...Specs]),
+    SUITE({name: 'read:errors:not_found'}, [...Specs]),
+    SUITE({name: 'read:errors:locked'}, [...Specs]),
+    ...
+  ]),      
+  SUITE({name: 'read:success'}, [...Specs]),
+  ...
+])
+```
+</code></pre>
+<p>We only change the <code>name</code> of each child SUITE, but the SAME SpecHandler <code>read</code> will be invoked for each of these Spec in each SUITE (and the SpecHandler must be able to deal with all of them).</p>
+<p>Naturally, the <code>UPDATE</code> SpecHandler will be a different one, and so on.</p>
+<p><strong>This way you almost never have to write a specific-valued test again! All you need is <code>it.each(addNumbersSpecs)(&quot;GENERIC test here for addNumbers() please&quot;, ()=&gt;{})</code></strong></p>
+<a id="md:sequence--control" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Sequence &amp; Control<a href="#md:sequence--control" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>In all test frameworks like Jest or Mocha, tests are run in a sequence.</p>
+<p>Hence, we already have the notion &quot;below&quot; already.</p>
+<p>To facilitate handling of sequence, everything in SpecZen is contained in an array.</p>
+<p>We use a number of COMMANDS^^ to have absolute control on this list.</p>
+<p>Lets revisit the 2 well known commands that all frameworks have, <code>ONLY</code> &amp; <code>SKIP</code>:</p>
+<ul>
+<li><code>ONLY</code>: run only this or these test(s) that follow. This is the Exclusive side.
+<ul>
+<li>If used inside a test, it runs <code>ONLY</code> this test! Plus all tests that have <code>ONLY</code>.</li>
+<li>If used on top of a SUITE, it only-ies all tests following, (i.e all in the current Suite) and following nested SUITEs</li>
+<li>If used in the middle or test suite, it only-ies all tests following (in current Suite), and following nested SUITEs. In the way you read them as a human, unlike other frameworks!</li>
+</ul>
+</li>
+</ul>
+<p>-<code>SKIP</code>: skip this or these test(s). This is the Skip side.</p>
+<ul>
+<li>If used inside a test, it SKIPs only this test!</li>
+<li>If used on top of a SUITE, it skips all tests following, (i.e all in the current Suite), and following nested SUITEs</li>
+<li>If used in the middle or test suite, it skips all tests following (in current Suite), and following nested SUITEs</li>
+</ul>
+<p><strong>(^^ Yes! All Commands in SpecZen are in CAPITAL, to separate from rest of your code/test data, and because they are tokens &amp; also functions with args (eg <code>SKIP</code> or <code>SKIP({reason: 'Breaks since refactoring in e53a1'})</code> can be used :))</strong></p>
+<a id="md:all-filters-eg-skip--only-take-metas" class="tsd-anchor"></a><h2 class="tsd-anchor-link">All Filters (eg <code>SKIP</code> &amp; <code>ONLY</code>) take metas<a href="#md:all-filters-eg-skip--only-take-metas" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>You can add meta info to your filters:</p>
+<pre><code><span class="hl-0">SKIP</span><span class="hl-1">({</span><br/><span class="hl-1"> </span><span class="hl-2">descr:</span><span class="hl-1"> </span><span class="hl-3">`Tried with refactored code &amp; breaks with &quot;Error: Invalid argument&quot;. </span><br/><span class="hl-3">         Functionality is not crucial for now, we might even depracate it - see #223`</span><span class="hl-1">,</span><br/><span class="hl-1"> </span><span class="hl-2">group:</span><span class="hl-1"> </span><span class="hl-3">&#39;UserLogin&#39;</span><br/><span class="hl-1"> </span><span class="hl-2">updates</span><span class="hl-1">: [</span><br/><span class="hl-1">  {</span><br/><span class="hl-1">    </span><span class="hl-2">date:</span><span class="hl-1"> </span><span class="hl-3">`2023-10-12`</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-2">description:</span><span class="hl-1"> </span><span class="hl-3">`The team decided we intorduce a BREAKING CHANGE and get rid of it!`</span><span class="hl-1">,</span><br/><span class="hl-1">  },</span><br/><span class="hl-1">],</span><br/><span class="hl-1"> ...</span><br/><span class="hl-1">})</span>
+</code><button>Copy</button></pre>
+
+<a id="md:skipies-and-onlies-priorities" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Skipies and Onlies priorities<a href="#md:skipies-and-onlies-priorities" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>SpecZen will use different <strong>priorities</strong> of <code>SKIP</code> &amp; <code>ONLY</code>, to control which tests to run in semantically incredible new ways!</p>
+<p>Think of logging, where we have different Severity or Priority <strong>logLevels</strong>. To understand their logic, we need to understand the <em>Semantics</em> of the <em>Severity</em>. See LogZen for more details.</p>
+<p>In SpecZen we have 2 select <em>Filters</em> families:</p>
+<ul>
+<li>
+<p>the <strong>Include Exclusively</strong> (eg. <code>ONLY</code>), what to <strong>Include</strong> (exclusively, while omitting all others),</p>
+</li>
+<li>
+<p>and <strong>Exclude</strong>, (eg. <code>SKIP</code>), which is what to <strong>Skip</strong> completely.</p>
+</li>
+</ul>
+<p>Think of Affirmative &amp; Negative, Yes &amp; No or simply <code>ONLY</code> &amp; <code>SKIP</code>! When we refer to <code>SKIP</code> &amp; <code>ONLY</code> from now on, we'll mean their families.</p>
+<a id="md:the-only-filter-onlies" class="tsd-anchor"></a><h3 class="tsd-anchor-link">The <code>ONLY</code> Filter (Onlies)<a href="#md:the-only-filter-onlies" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>The <code>ONLY</code> is the <strong>Include Exclusively</strong> side, and have these priorities/severities.</p>
+<p>Names are chosen to have a &quot;positive, inclusive and focus&quot; connotation, and also to be easy to remember:</p>
+<ul>
+<li><code>FEAT</code> = 1 - We are starting work on a FEATure (eg a workpiece, PR, a ticket etc), so everything belongs together in away. We want to narrow to everything we can think of as related to this FEATure.</li>
+<li><code>LOOK</code> = 2 - We start delving down to what WORKs, cause some part the whole FEATure might start to be breaking, or are irrelevant noise etc.</li>
+<li><code>ONLY</code> = 3 - Only run this or these tests, it's our soft focus.</li>
+<li><code>FOCUS</code> = 4 - Focus on a specific groups of Specs or Suites, along higher priority ones. The ones with lower priority (<code>FEAT</code>, <code>LOOK</code>, <code>ONLY</code>) are disabled.</li>
+<li><code>PICK</code> = 5 - Pick a group of worked-together tests, and run only them.</li>
+<li><code>SOLO</code> = 6 - What we are currently working on, nothing else should matter!</li>
+<li><code>ME</code> = 7 - Override anything else, only me!</li>
+</ul>
+<p>(We also call them collectively as <strong>Onlies</strong> or <strong>an Onlie</strong> or &quot;ONLY priorities/siblings&quot; or plain &quot;ONLY&quot;)</p>
+<p>Note: when we first introduce a higher level of an Onlie (eg <code>SOLO</code>) anywhere in our suite, we narrow down the tests that are <em>exclusively selected</em>.
+The tests with a lower Onlie priority have lost our focus. So in effect, the more we use <strong>higher priority Onlies</strong>, the <strong>less tests are run</strong>.</p>
+<p>We suggest against having Onlies for in your Suites/Specs for long: you start a PR/work item/feature, you start focusing on it, and you're supposed to start removing the Onlies as you finish. This is the opposite of <code>SKIP</code>, see below.</p>
+<p>Think the contrast of low &amp; high LogLevels, when developing OR when in PROD:</p>
+<ul>
+<li>While developing (locally or not), we have high logLevels (eg <code>VERBOSE</code>), if things work OK. We even have  <code>DEBUG</code> or even  <code>TRACE</code> enabled is our log level for specific parts of the App, when we struggle to pin-point that buggy code. So its high <code>VERBOSE</code>- <code>DEBUG</code>- <code>TRACE</code> on DEV, most times.</li>
+<li>In production, we have <code>WARN</code> or <code>ERROR</code> usually, but if things go wrong we go a bit higher. But would you ever use  <code>DEBUG</code> even on STAGING env? Probably not.</li>
+</ul>
+<p>We have the same notion here, it depend on the focus.</p>
+<p>The initial dev focus, when we're working on a FEATure, we're between <code>ONLY</code> &amp; what's before it, like <code>LOOK</code> &amp; <code>FEAT</code>. When things get a bit tough, we need a higher level of <code>FOCUS</code>, similarly in logging we only have <code>INFO</code> or <code>VERBOSE</code>, but not  <code>DEBUG</code> or  <code>TRACE</code> all the time. But when things go wrong, we go to higher levels of concentration, eg to <code>FOCUS</code>-<code>PICK</code>-<code>SOLO</code> and in extreme case to <code>ME</code> (think <code>ME</code> as the equivalent to <code>TRACE</code> <code>logLevel</code>).</p>
+<p><strong>Rule of Thumb: The HIGHER the Onlie priority (eg <code>SOLO</code>), found in all your Suites, in all Specs, the LESS tests are run (i.e more focus, more solo-ness ;-). The <code>ONLY</code>, <code>FOCUS</code> etc. ones are eliminated.</strong></p>
+<a id="md:skip-filter-aka-skipies" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><code>SKIP</code> Filter (a.k.a Skipies)<a href="#md:skip-filter-aka-skipies" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>The <code>SKIP</code> is the <strong>Exclude</strong> or <strong>Hide</strong> command and we have the following priorities &amp; semantics.</p>
+<p>The names are chosen to have a &quot;negative, exclude and ignore&quot; connotation, and also to be easy to remember _(including <strong>FUTURE</strong> :-( which looks bleak with all the wars lately)</p>
+<ul>
+<li><code>FUTURE</code> = 1 - We might have a thought about this FUTURE broken/not implemented feature, but no focus at all right now. It's nice to have a roadmap and some meta though!</li>
+<li><code>YAGNI</code> = 2 - We know we don't need this feature, but we keep a test skeleton for it, just in case.</li>
+<li><code>BREAKS</code> = 3 - We know it breaks, probably for a long time. Not fixable, not the focus right now.</li>
+<li><code>IGNORE</code> = 4 - Ignore this test, its maybe part of the whole feature, just not this work piece (eg PR), or waiting for something or someone else etc.</li>
+<li><code>SKIP</code> = 5 - We are currently working around this feature, but we want to be able to drill down a bit more if needed.</li>
+<li><code>NOPE</code> = 6 - We don't actively want those. Maybe we are DONE with them &amp; they seem to work fine. But maybe we don't want their noise!</li>
+<li><code>TODO</code> = 7 - Marked in our open TODOs, will come back to it soon</li>
+<li><code>WIP</code> = 8 - Work in progress, but not there yet. Disable momentarily.</li>
+</ul>
+<p>(We also call them collectively as &quot;Skipies&quot; or &quot;a Skipy&quot; or &quot;SKIP priorities/siblings&quot; or plain &quot;SKIP&quot;)</p>
+<p>What is the <em>difference</em> and the <em>semantic significance</em> between <code>SKIP</code> or <code>TODO</code>, and the severe <code>BREAKS</code>, in our dev workflow? Small difference, but huge semantic significance, respectively!</p>
+<p>It's again similar to how <code>logger.error()</code> is different to <code>logger.verbose()</code>: Semantics, and practical reasons.</p>
+<p>The low-priority <code>BREAKS</code> or <code>FUTURE</code>, is NOT what we are dealing on right now. We have <code>TODO</code>s all day that we know are there, then we have some <code>SKIP</code>s, perhaps for a different day, commit, work item etc.</p>
+<p>On the other side, we have <code>BREAKS</code> for things we know are broken, maybe recently etc but we are not focusing right now. But one day soon we hope to tackle it! And we have <code>FUTURE</code> which are difficult or impossible and certainly not for now, perhaps definitions or skeletons of how IT SHOULD work in the future or new version etc. We proceed accordingly!</p>
+<p>Why not get rid of all these keywords, and just let user provide the <code>priority</code> (severity) on the just 2 COMMANDS?
+<code>SKIP(3)</code> or <code>ONLY(10)</code> etc. Well, semantics &amp; consistency for sure, it's easier to search and replace &quot;BREAKS&quot; with &quot;// BREAKS&quot; also.</p>
+<a id="md:skip-always-akips" class="tsd-anchor"></a><h4 class="tsd-anchor-link"><code>SKIP</code> always akips<a href="#md:skip-always-akips" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4><p>When you add any new (effective) <code>SKIP</code>s on your <code>SUITE</code> or <code>Spec</code>, it just runs a few <strong>less tests</strong>!</p>
+<p>Any <code>priorities</code> in the <code>SKIP</code> command family, means elimination of tests! So, why do we need so many levels? Is it <em>just</em> semantics, or can we control which tests we can selectively eliminate?</p>
+<p>YES, we can. You can <code>SKIP_END</code>, or <code>BREAK_END</code>, or <code>TODO_END</code> etc inside a Suite, to selectively unhide tests (Gen2/3).</p>
+<p>For example:</p>
+<pre><code><span class="hl-4">// @todo: fix example</span><br/><span class="hl-0">SUITE</span><span class="hl-1">([</span><br/><span class="hl-1">  </span><span class="hl-5">WIP</span><br/><span class="hl-1">  </span><span class="hl-4">// ... some WIP Suites      </span><br/><span class="hl-1">  </span><span class="hl-4">// ... some TODO Suites      </span><br/><span class="hl-1">  </span><span class="hl-4">// ... some FUTURE Suites   </span><br/><span class="hl-1"> </span><span class="hl-2">$WIP_MUTE</span><span class="hl-1"> </span><span class="hl-4">// @todo: this should be a global, calling into ingnoreSkipyPriority?</span><br/><span class="hl-1">])</span>
+</code><button>Copy</button></pre>
+
+<p>This will <strong>stop</strong> eliminating tests <strong>only</strong> of the WIP level, but will continue eliminating tests on the TODO level and below (the FUTURE for sure!). Now you can really test all those tests you hid 10 minutes ago, and see if they are now fixed!</p>
+<a id="md:filter-commands-overview---wip" class="tsd-anchor"></a><h1 class="tsd-anchor-link">Filter Commands Overview - WIP<a href="#md:filter-commands-overview---wip" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><a id="md:skipiesskip" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Skipies/SKIP<a href="#md:skipiesskip" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>These apply to all levels of Skipies, eg <code>FUTURE</code>, <code>BREAKS</code>, <code>WIP</code></p>
+<ul>
+<li>
+<p><code>SKIP</code>: Filters out all Specs below, until a SKIP_END is found</p>
+</li>
+<li>
+<p><code>SKIP_END</code> (aka SKIP_END)</p>
+<ul>
+<li>Ends skipping / Stops, at level of SKIP and higher.
+<ul>
+<li>
+<p>Warns if no SKIP in effect? Unmatched SkipEnds should warn/throw? Does it makes sense?</p>
+<pre><code> SUITE(SKIP, [
+    // SKIP in effect
+    ['skipped1'],
+    SUITE([['nested_skipped1']]),
+    WIP_END ?????? not matching SKIP
+ ])
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>SKIP_MUTE</code></p>
+<ul>
+<li>Ignores SKIP &amp; higher, from below here!</li>
+</ul>
+</li>
+<li>
+<p><code>$SKIP_MUTE</code></p>
+<ul>
+<li>Ignores SKIP &amp; higher, in current scope (place in root Suite for ignoring) !</li>
+</ul>
+</li>
+<li>
+<p><code>SKIP_ABOVE</code> (NOT IMPLEMENTED G2/3)</p>
+<ul>
+<li>Applies like SKIP to all things (Suites &amp; Spec), but above, not below!</li>
+</ul>
+</li>
+</ul>
+<a id="md:spec---what-is-a-spec" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Spec - what is a Spec?<a href="#md:spec---what-is-a-spec" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>You can think of <code>Spec</code> as a Test Case, a Test Scenario, a Test Definition, a Test Hypothesis or Test Thesis or a myriad other names.</p>
+<p>But a <code>Spec</code> in many industries also means the Desired Features, The Top Level Documentation or the Requirements, or Feature Docs. Maybe these are for the future or for another version.</p>
+<p>All of these are a valid definition for Spec, and SpecZen gives a powerful one:</p>
+<p>Call whatever you want, but it's just a bunch of data, it's a property bag with <code>SpecData</code> given to your <code>specSpecHandler</code>.</p>
+<p>Similar Specs are grouped together in SUITEs (the sole container of Specs), to test different behaviours of the same thing (eg the <code>API read</code> operation).</p>
+<p>we have</p>
+<p>@todo: conversion of Array to Object
+@todo: Each <code>Spec</code> has one or more <code>SpecHandlers</code></p>
+<a id="md:-the-imaginary-speczen-gen23n-docs-" class="tsd-anchor"></a><h1 class="tsd-anchor-link">********** The IMAGINARY SpecZen Gen2/3/N DOCS *****************<a href="#md:-the-imaginary-speczen-gen23n-docs-" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><p><strong>NOTE: FEATURES AND DOCS BELOW ARE WIP / NOT IMPLEMENTED</strong></p>
+<a id="md:above-as-below-gen23" class="tsd-anchor"></a><h2 class="tsd-anchor-link">ABOVE as BELOW (Gen2/3)<a href="#md:above-as-below-gen23" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>By default, all Filters are BELOW. But they could also have an _ABOVE equivalent (useful only in the Array, not the test!)</p>
+<ul>
+<li><code>SKIP_ABOVE</code>: skip all tests preceding this <code>SKIP_ABOVE</code>.
+<ul>
+<li>Q: How is this different to.... <code>ONLY</code>, which onlies what's below??</li>
+</ul>
+</li>
+<li><code>ONLY_ABOVE</code>... etc</li>
+</ul>
+<p>See <code>src/__tests__/NOT-IMPLEMENTED</code> to get ideas.</p>
+<a id="md:target-skiponly-at-specifics-gen34" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Target SKIP/ONLY at specifics (Gen3/4)<a href="#md:target-skiponly-at-specifics-gen34" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>You can even target to unhide a specific &quot;group&quot;, &quot;specHandlers&quot; etc (Gen3/4)</p>
+<a id="md:skip--only-families-reporting-gen23" class="tsd-anchor"></a><h2 class="tsd-anchor-link"><code>SKIP</code> &amp; <code>ONLY</code> families Reporting (Gen2/3)<a href="#md:skip--only-families-reporting-gen23" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>@todo: In each run, you will get a nice report of how many tests are &quot;hidden&quot;, into each category of <code>SKIP</code>, for each SpecHandler etc!</p>
+<p>These are just thoughts!</p>
+<a id="md:filter-specifics-v9yagni" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Filter specifics (V9/YAGNI)<a href="#md:filter-specifics-v9yagni" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
+<li>
+<p><code>DO((test, testSuite, options) =&gt; boolean | EOnlyLevel)</code> - DO RUN (ie include) this test/suite, if the function returns true.</p>
+</li>
+<li></li>
+<li>
+<p><code>FOCUS</code>((test, testSuite, options) =&gt; boolean | EOnlyLevel)<code>- DO RUN and apply</code>ONLY<code>(ie include exclusively) this Spec/SUITE, if the function returns true or the</code>EOnlyLevel<code>returns is &gt;= to the</code>FOCUS<code> </code>onlylevel`.</p>
+</li>
+<li>
+<p><code>DONT((spec, suite, options) =&gt; boolean | ESkipLvel)</code> - DO NOT run (i.e skip) this test/suite, if the function returns false.</p>
+</li>
+</ul>
+<p>Who wins if both exist? Good question!</p>
+<a id="md:release-notes" class="tsd-anchor"></a><h1 class="tsd-anchor-link">Release Notes<a href="#md:release-notes" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><a id="md:versions--generations" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Versions &amp; Generations<a href="#md:versions--generations" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>SpecZen versions follows <a href="https://docs.npmjs.com/about-semantic-versioning" target="_blank" class="external">Semantic Versioning</a>: Only when it breaks functionality (hopefully rarely) eg with current version 1.x.x, it goes from 1.x.x to 2.0.0 etc. Not when features are added. <a href="https://www.geeksforgeeks.org/introduction-semantic-versioning" target="_blank" class="external">Read more</a>.</p>
+<p>What's more interesting, is Generation, which is quite independent of Version.</p>
+<ul>
+<li>
+<p>Version 1.0.0 &amp; Gen 1.0.0 is with initial functionality, with many Not Implemented exotic features, but still immensely useful ;-) Tested enough, but not battle tested yet. Version 2.0.0, 3.0.0 etc will be just iterations, possibly breaking of those. Think of v1.0.0 G1 as 0.1.0 &amp; then v2.0.0 G1 as 0.2.0, but with semantic versioning!</p>
+</li>
+<li>
+<p>Gen 2.0.0, Version XX.0.0 (unknown yet) will aim to implement missing features like <code>SKIP_ABOVE</code>, fix serious shortcomings &amp; bugs in generation, write more tests, clean up API &amp; docs, and add few low-hanging fruit features :-) Also make a start on Tests=Docs-Examples!</p>
+</li>
+<li>
+<p>Gen 3/4 will start dealing with the important/hard future features stuff.</p>
+</li>
+</ul>
+<a id="md:future-direction-highlights" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Future Direction Highlights<a href="#md:future-direction-highlights" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
+<li>Improve typing and type checks:
+<ul>
+<li>a) use typing system of <code>Zen</code> (<code>Tany</code> and more)</li>
+<li>c) use <code>TypeEqual</code> checks from <code>ts-expect</code></li>
+<li>b) use <code>ValidZen</code> to validate the Specs at runtime (Gen2/3)</li>
+</ul>
+</li>
+<li>Improve titling of nested of Suites &amp; Specs.</li>
+<li>Detect duplicate tests (same Spec in different Suites, or same Spec in same Suite) against same SpecHandler</li>
+<li>Implement missing features like <code>SKIP_ABOVE</code> &amp; <code>ONLY_ABOVE</code> (Gen2/3)</li>
+<li>Implement <code>DO</code> &amp; <code>DONT</code> (Gen3/4)</li>
+<li>Implement Detailed Reporting (Gen2/3)</li>
+<li>Improve/implement <code>MetaInfo</code> info in filters (Gen2/3)</li>
+<li>More way to filter &amp; search interactively but IN CODE, including <code>MetaInfo</code> (Gen3/4)</li>
+<li>Flip SKIP / ONLY / current view: Out of <code>Specs A..Z</code> , I work on <code>Spec A</code> and <code>XYZ</code>, and I want to flip between <code>A</code> and <code>XYZ</code> with one easy switch, ignore all others <code>B...W</code>.</li>
+</ul>
+<a id="md:support-us" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Support us!<a href="#md:support-us" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Please support by staring, mentioning, sharing on social, reviewing, testing, opening issues or PRs or simply using ;-)</p>
+<a id="md:license" class="tsd-anchor"></a><h1 class="tsd-anchor-link">License<a href="#md:license" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><p>MIT NON-AI</p>
+</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#md:speczen-v100"><span>Spec<wbr/>Zen v1.0.0</span></a><a href="#md:aims--overview"><span>Aims &amp; <wbr/>Overview</span></a><ul><li><a href="#md:the-big-picture"><span>The <wbr/>Big <wbr/>Picture</span></a></li><li><a href="#md:current-aim-author-better-test-specifications--have-absolute-execution-control-on-them"><span>Current aim: <wbr/>Author better <wbr/>Test <wbr/>Specifications &amp; have absolute execution control on them!</span></a></li><li><ul><li><a href="#md:spec-dsl"><span>Spec DSL</span></a></li><li><a href="#md:grouping-similar-tests-with-suite"><span>Grouping similar tests with SUITE</span></a></li><li><a href="#md:filtering---more-than-only--skip"><span>Filtering -<wbr/> more than ONLY &amp; SKIP</span></a></li><li><ul><li><a href="#md:onlies-and-skipies"><span>Onlies and <wbr/>Skipies</span></a></li></ul></li><li><a href="#md:eaching---repeating-patterns"><span>EACHing -<wbr/> <wbr/>Repeating <wbr/>Patterns</span></a></li><li><a href="#md:decoupling"><span>Decoupling</span></a></li></ul></li><li><a href="#md:future-aim-specs--documentation--examples--tutorial--executable-code--playground"><span>Future aim: <wbr/>Specs === <wbr/>Documentation === <wbr/>Examples === <wbr/>Tutorial === <wbr/>Executable <wbr/>Code === <wbr/>Playground</span></a></li><li><a href="#md:what-speczen-is-not"><span>What <wbr/>Spec<wbr/>Zen is NOT</span></a></li><li><ul><li><a href="#md:compatibility"><span>Compatibility</span></a></li><li><a href="#md:coding"><span>Coding</span></a></li><li><a href="#md:users"><span>Users</span></a></li></ul></li></ul><a href="#md:why-speczen"><span>Why <wbr/>Spec<wbr/>Zen?</span></a><ul><li><a href="#md:dev-xperience"><span>Dev <wbr/>Xperience</span></a></li><li><a href="#md:devops-xperience"><span>Dev<wbr/>Ops <wbr/>Xperience</span></a></li><li><a href="#md:speczen-benefits"><span>Spec<wbr/>Zen <wbr/>Benefits</span></a></li></ul><a href="#md:speczen-features"><span>Spec<wbr/>Zen <wbr/>Features</span></a><ul><li><a href="#md:decoupling-1"><span>Decoupling</span></a></li><li><a href="#md:test-implementation-spechandler"><span>Test <wbr/>Implementation <wbr/>Spec<wbr/>Handler</span></a></li><li><a href="#md:spechandler-aims"><span>Spec<wbr/>Handler <wbr/>Aims</span></a></li><li><ul><li><a href="#md:the-generic-way"><span>The <wbr/>Generic way</span></a></li><li><a href="#md:how-is-this-even-technically-possible"><span>How is this even technically possible?</span></a></li></ul></li><li><a href="#md:generic-spechandler-example"><span>Generic <wbr/>Spec<wbr/>Handler <wbr/>Example</span></a></li><li><a href="#md:sequence--control"><span>Sequence &amp; <wbr/>Control</span></a></li><li><a href="#md:all-filters-eg-skip--only-take-metas"><span>All <wbr/>Filters (eg SKIP &amp; ONLY) take metas</span></a></li><li><a href="#md:skipies-and-onlies-priorities"><span>Skipies and <wbr/>Onlies priorities</span></a></li><li><ul><li><a href="#md:the-only-filter-onlies"><span>The ONLY <wbr/>Filter (<wbr/>Onlies)</span></a></li><li><a href="#md:skip-filter-aka-skipies"><span>SKIP <wbr/>Filter (a.k.a <wbr/>Skipies)</span></a></li><li><ul><li><a href="#md:skip-always-akips"><span>SKIP always akips</span></a></li></ul></li></ul></li></ul><a href="#md:filter-commands-overview---wip"><span>Filter <wbr/>Commands <wbr/>Overview -<wbr/> WIP</span></a><ul><li><a href="#md:skipiesskip"><span>Skipies/SKIP</span></a></li><li><a href="#md:spec---what-is-a-spec"><span>Spec -<wbr/> what is a <wbr/>Spec?</span></a></li></ul><a href="#md:-the-imaginary-speczen-gen23n-docs-"><span>********** <wbr/>The IMAGINARY <wbr/>Spec<wbr/>Zen <wbr/>Gen2/3/<wbr/>N DOCS *****************</span></a><ul><li><a href="#md:above-as-below-gen23"><span>ABOVE as BELOW (<wbr/>Gen2/3)</span></a></li><li><a href="#md:target-skiponly-at-specifics-gen34"><span>Target SKIP/ONLY at specifics (<wbr/>Gen3/4)</span></a></li><li><a href="#md:skip--only-families-reporting-gen23"><span>SKIP &amp; ONLY families <wbr/>Reporting (<wbr/>Gen2/3)</span></a></li><li><a href="#md:filter-specifics-v9yagni"><span>Filter specifics (<wbr/>V9/YAGNI)</span></a></li></ul><a href="#md:release-notes"><span>Release <wbr/>Notes</span></a><ul><li><a href="#md:versions--generations"><span>Versions &amp; <wbr/>Generations</span></a></li><li><a href="#md:future-direction-highlights"><span>Future <wbr/>Direction <wbr/>Highlights</span></a></li><li><a href="#md:support-us"><span>Support us!</span></a></li></ul><a href="#md:license"><span>License</span></a></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="modules.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-1"></use></svg><span>@neozen/speczen</span></a><ul class="tsd-small-nested-navigation" id="tsd-nav-container" data-base="."><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>

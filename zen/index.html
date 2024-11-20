@@ -1,0 +1,443 @@
+<!DOCTYPE html><html class="default" lang="en"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@neozen/zen</title><meta name="description" content="Documentation for @neozen/zen"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-search"></use></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div><div class="field"><div id="tsd-toolbar-links"></div></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">@neozen/zen</a></div><div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><h1>@neozen/zen</h1></div><div class="tsd-panel tsd-typography"><a id="md:zen-100" class="tsd-anchor"></a><h1 class="tsd-anchor-link">Zen 1.0.0<a href="#md:zen-100" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><p><strong>Zen</strong> offers a radical way to type-check all values and iterate / projéct / filter / reduce etc, consistently over <strong>all the different JS values &amp; types</strong>. <code>Zen</code> is (so much more than) a collection of essential useful utils for JavaScript &amp; TypeScript, missing from JS and popular libs like lodash &amp; others!</p>
+<p>Subsequent versions aim to make it an almost drop-in replacement of lodash, carrying all its functions, but in the Zen way!</p>
+<a id="md:main-features" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Main features<a href="#md:main-features" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><a id="md:type-checking-runtime--compile-time" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Type Checking (Runtime &amp; Compile time)<a href="#md:type-checking-runtime--compile-time" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>Zen brings proper type-checking to JS and TS:</p>
+<ul>
+<li>a <strong>Runtime Type System</strong>, to check the real-world types, so much better than <code>typeof</code>, <code>instanceof</code> &amp; and all lodash <code>is.isXxx</code> we all use.</li>
+<li>Coupled by a <strong>Static TypeScript typings</strong> system, to make sane typing decisions</li>
+</ul>
+<a id="md:iteration--projections-on-steroids-via-generators" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Iteration &amp; Projections on steroids, via Generators<a href="#md:iteration--projections-on-steroids-via-generators" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>With <strong>Zen</strong> you can simplify (&amp; deprecate) all the <strong>inconsistent</strong> ways of:</p>
+<ul>
+<li>
+<p>Iterating (i.e looping) with legacy ways, for example <code>for..in</code>, <code>for..of</code>, <code>Array.forEach()</code>, <code>_.each</code>, <code>Object.keys</code> etc</p>
+</li>
+<li>
+<p>Projecting with a myriad different ways, different for avery type (eg <code>Array.map</code>, <code>_.filter()</code>, <code>_.mapValues()</code>)</p>
+</li>
+</ul>
+<p>With Zen, you unify the subtle differences across the varying data types, both when you iterate &amp; project upon.</p>
+<p>// @todo:</p>
+<ul>
+<li>
+<p>Consistently &amp; JS natively <code>for const [val, key] of loop(anyValue) {...}</code></p>
+<ul>
+<li>Without callbacks (but an <code>z.each</code> also exists!)</li>
+</ul>
+</li>
+<li>
+<p>you can iterate/map/filter etc on <code>Array</code>, <code>Set</code>, <code>Map</code>, <code>ArrayBuffer</code> etc in the same, sane &amp; consistent way.</p>
+</li>
+</ul>
+<p>Zen features:</p>
+<ul>
+<li>a <strong>JS Native Iteration on Anything</strong> function called <strong>loop()</strong>, that is powered by Generators</li>
+<li>a <strong>Projection &amp; Filtering on Anything</strong> engine build on top of <code>loop()</code>, with <strong>native Keys &amp; object Props</strong> &amp; string &amp; Symbol props included (all optional, via options)</li>
+<li>All behaviors are optional and configurable, cause <strong>Options are King</strong>.</li>
+</ul>
+<a id="md:typed--tested" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Typed &amp; tested<a href="#md:typed--tested" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li>Zen is rigorously typed with TypeScript 5.6, <strong>Extensively Tested</strong> with 1000's of tests (including generated ones) and more!</li>
+</ul>
+<a id="md:the-runtime-type-checking-system" class="tsd-anchor"></a><h1 class="tsd-anchor-link">The Runtime Type Checking System<a href="#md:the-runtime-type-checking-system" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><p><strong>Zen</strong> dares to propose an extended, very logical and only a bit radical <strong>Runtime Type System</strong> for JS/TS, to fix the UTTERLY BROKEN runtime typing system of JS in 2024, 29 years after its conception. That's why <strong>The Bad Parts</strong> is a must read before even <strong>The Good Parts</strong>, for anyone touching this otherwise great language!</p>
+<p>In short, Zen's <strong>Runtime Type System</strong>:</p>
+<ul>
+<li>
+<p>Is &quot;complying&quot; when it's OK, its &quot;extending&quot; when it should, it is &quot;fixing&quot; when breaking is a must and is &quot;improving&quot; when it's wise. The Bad Parts is a good background!</p>
+</li>
+<li>
+<p>You can forget and never use again the myriad inconsistencies of the existing <code>typeof</code>, <code>instanceof</code> &amp; other type-related absurdities of JS &amp; the status-quo. My favorite is <code>NaN !== NaN</code> ;-)</p>
+</li>
+<li>
+<p>Also, you can bypass lodash's shortcomings around types (and more below):</p>
+</li>
+</ul>
+<p>Can you believe it's 2024 and native / status quo JS is :-(</p>
+<pre><code>- `typeof myPromise === 'object'`
+- `typeof Promise === 'function'`
+- `Promise.isPromise === undefined` 
+- `_.isPromise === undefined`
+</code></pre>
+<p>We can only rely on <code>myPromise instanceof Promise</code>, for a limited <code>true</code> or <code>false</code> check.</p>
+<p>Compare with the consistency of Zen's Type System:</p>
+<pre><code>  - `z.isPromise(prom) === true`
+  - `z.type(prom) = 'Promise'`
+  - `z.type(Promise) === 'class'`      
+  - `z.classType(Promise) === 'systemClass'`
+  - `z.constructor(prom) === Promise`
+</code></pre>
+<p>And this is just 1 example, just for <code>Promise</code>, but almost ALL types have similar or even worse issues (fixed by Zen)! For example, <code>typeof null</code> is <code>'object'</code> and <code>typeof NaN</code> is <code>'number'</code>!</p>
+<p>With Zen / ZenType you'll get a consistent, logical, and rich type system, that is also well-typed with TypeScript.</p>
+<p>Consider a system Class/constructor &amp; instance info:</p>
+<pre><code>// vanilla JS
+console.log(typeof Set)         // function
+console.log(typeof new Set())   // object    
+</code></pre>
+<p>Really, is <code>Set</code> just a <code>function</code>? Can we really call <code>Set([])</code>? No! It is a class/constructor and we have to <code>new Set([])</code>!</p>
+<p>And the set instance, is it just an <code>object</code>? You should know that everything (except <em>some</em> primitives) is a typeof <code>object</code> in JS!</p>
+<p>JS is lying to us relentlessly and <code>typeof</code> is utterly broken!</p>
+<p>Compare with Zen:</p>
+<pre><code>console.log(type(Set))                // class
+console.log(type(new Set()))          // Set
+
+// And more: 
+console.log(classType(Set))           // systemClass
+console.log(instanceType(new Set()))  // systemInstance
+</code></pre>
+<p>What about user classes and instances?</p>
+<pre><code>class Aclass {a = 1}
+const aInstance = new Aclass()
+
+// Vanilla JS
+console.log(typeof Aclass)              // function
+console.log(typeof aInstance)           // object
+</code></pre>
+<p>Sucks like above! With Zen:</p>
+<pre><code>// Zen `type()` basics
+console.log(type(Aclass))               // class
+console.log(type(aInstance))            // realObject
+
+// Zen Extras
+console.log(realObjectType(aInstance))  // instance
+console.log(realType(aInstance))           // instance
+console.log(classType(Aclass))          // userClass
+console.log(instanceType(aInstance))    // userInstance
+</code></pre>
+<p>Perhaps the epitome of JS madness is <code>NaN !== NaN</code>. But test your self, do you know the <code>typeof null</code>? You'll be surprised, I still am ;-)</p>
+<p>Let 2024 be the year we stopped using <code>typeof</code>, <code>instanceof</code>, <code>Object.isObject</code> and the rest of the gang, and started using a proper Type System, with <a href="/functions/type.html"><code>z.type</code></a>and <code>z.isXxx</code>!</p>
+<p>The Type System comes packed with:</p>
+<ul>
+<li>
+<p><a href="/functions/type.html"><code>z.type</code></a> &amp; many other <code>xxxType()</code> functions, with many natural-occuring &amp; synthetic types</p>
+</li>
+<li>
+<p>A plethora of individual type inference checkers like ( <a href="/functions/isSingle.html"><code>z.isSingle</code></a>,  <a href="/functions/isMany.html"><code>z.isMany</code></a>,  <a href="/functions/isPrimitive.html"><code>z.isPrimitive</code></a>, <a href="/functions/isClass.html"><code>z.isClass</code></a> and tens more</p>
+</li>
+<li>
+<p>You also get useful types like <a href="/types/Tany.html"><code>Tany</code></a> (so you can <code>Exclude&lt;Tany, TPrimitive&gt;</code>), along with <a href="/types/TPrimitive.html"><code>TPrimitive</code></a>, <a href="/types/TSingle.html"><code>TSingle</code></a> &amp; <a href="/types/TMany.html"><code>TMany</code></a> and many more, to help you with your TypeScript types.</p>
+</li>
+<li>
+<p>You even get <a href="/types/TPrimitiveNames.html"><code>TPrimitiveNames</code></a> and <a href="/types/TsingleNames.html"><code>TsingleNames</code></a> and similarly for all, to help you with your TypeScript types handling!</p>
+</li>
+<li>
+<p>To be complete, you also get a runtime <a href="/variables/PRIMITIVE_TYPES.html"><code>PRIMITIVE_TYPES</code></a>, <a href="/variables/SINGLE_TYPES.html"><code>SINGLE_TYPES</code></a> and similarly for all, to help you with your runtime type checks!</p>
+</li>
+<li>
+<p>Equality &amp; similarity checkers like <a href="/functions/isEqual.html"><code>z.isEqual</code></a>,  <a href="/functions/isLike.html"><code>z.isLike</code></a> and many more, and all <code>isXxx</code> type checks you'll ever need ( <a href="/functions/isBigInt.html"><code>z.isBigInt</code></a>,  <a href="/functions/isGenerator.html"><code>z.isGenerator</code></a> etc) &amp; few set-theory utils (<code>z.isSetEqual</code>). All accepting options, to cover many different use cases.</p>
+</li>
+<li>
+<p>All typesafe with TypeScript ;-)</p>
+</li>
+</ul>
+<a id="md:native-iteration-on-anything" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Native Iteration on anything<a href="#md:native-iteration-on-anything" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>The mighty <a href="/functions/loop.html">z.loop</a> allows the iteration on ALL collections/nested values types (a.k.a <code>z.isMany</code> like <code>Array</code>, <code>realObject</code>, <code>Set</code>, <code>Map</code>, <code>Iterator</code>, <code>AsyncIterator</code> etc) <strong>in the exact same way</strong>, with native JS only:</p>
+<p>You can just</p>
+<pre><code>for const [val, key] of z.loop(anything) {...}
+</code></pre>
+<p>and iterate on <code>anything</code> that has nested values on it, in the same way, with the same code, without any special cases or special libraries or weird callbacks and APIs. In plain JS.</p>
+<p>Forget iteration (and projections) with <code>Array.forEach/map/filter()</code>, lodash limited <code>_.each</code> &amp; <code>_.map</code> etc and the same with Ramda, IxJs, <code>Set.entries()</code> and the myriads other ways for iteration &amp; projections. They are suboptimal, some don't support async/await, others have steep APIs, others don't support <code>Set</code> and <code>Map</code> etc.</p>
+<p>Just a <code>for...of z.loop(anything) {}</code> and you can loop over anything has nested values / props (and also <code>map</code>, <code>filter</code>, <code>take</code> etc while doing so, declaratively!)</p>
+<a id="md:project--filter-anything" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Project &amp; Filter Anything<a href="#md:project--filter-anything" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>A collection of tools like <a href="/functions/map.html"><code>z.map()</code></a> / <a href="/functions/filter.html"><code>z.filter()</code></a> / <a href="/functions/take.html"><code>z.take()</code></a> / <a href="/functions/clone.html"><code>z.clone()</code></a> / <a href="/functions/keys.html"><code>z.keys()</code></a> and more like <a href="/functions/reduce.html"><code>z.reduce()</code></a>]  (all based on the <a href="/functions/loop.html">z.loop</a>) that <strong>return the same type, as the input value type</strong>!</p>
+<ul>
+<li>
+<p>You pass an Array, you get an Array (with mapped/filtered/etc elements - i.e <code>_.map</code> / <code>_.filter</code>).</p>
+</li>
+<li>
+<p>You pass an Object, you get an Object with (with mapped/filtered/etc values - i.e <code>_.mapValues</code> / <code>_.pickBy</code>).</p>
+</li>
+<li>
+<p>Similar for <code>Map</code>, <code>Set</code>, <code>Iterator</code>, <code>Generator</code> etc!</p>
+</li>
+<li>
+<p>You can also optionally pass a single value (experimental) and get the <em>mapped</em>/<em>filtered</em> etc single value back! Booxed, if it was Boxed, primitive if it was primitive.</p>
+</li>
+</ul>
+<p>You can forget <code>_.filter</code>, <code>_.map</code>, <code>_.mapValues</code>, <code>_.pickBy</code>, <code>_.clone</code>, <code>keys()</code> and many others, that are limited and stringent and working only on narrow cases, (eg only for objects or only for Arrays etc) and none for Maps &amp; Sets ;-(. <code>z.</code> works with <em>Zenything</em>, in the same way!</p>
+<p>Note: FP flavour coming soon ;-)</p>
+<a id="md:keys--props-included" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Keys &amp; Props Included<a href="#md:keys--props-included" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>All methods differentiate between normal <code>keys/Indices</code>, <code>elements</code> &amp; <code>values</code> of a nested value (like an <code>Array</code>, <code>Set</code> etc) and the props all <code>_.isObject</code> values have. You can choose what to include/exclude in any iteration / projection (eg <code>own</code>, <code>inherited</code>, <code>non-enumerable</code>, <code>symbols</code>, <code>props</code> as well or <code>props only</code> etc) in the <code>options</code>!</p>
+<a id="md:options-are-king" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Options are King<a href="#md:options-are-king" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Almost all functions are accepting a plethora of <code>options</code>, that allow customisable behaviour in meaningful ways. Many of the options are common among functions (eg <code>ImapOptions extends IloopOptions</code> and in turn <code>IloopOptions extends IkeysOptions</code>) hence synergies emerge. All projections like <code>map()</code>, <code>filter()</code>, <code>take()</code> etc share the same implementation, just with different types and tiny extra checks.</p>
+<a id="md:lib--type-system-is-typed" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Lib &amp; Type System is Typed<a href="#md:lib--type-system-is-typed" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>The Type System and whole library are typed with TypeScript (workable, not perfect in v1).</p>
+<p>For example, passing an <code>AsyncIterator</code> to c will return an <code>AsyncGenerator</code> type and not a <code>Generator</code> type, respecting the types of the original type. Similarly, passing an <code>Array</code> to <code>z.map()</code> will return an <code>Array</code>, passing a <code>realObject</code> will return an <code>Record</code> and not something different.</p>
+<a id="md:lib--type-system-is-tested" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Lib &amp; Type System is Tested<a href="#md:lib--type-system-is-tested" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Extensively tested, with 1000's of exhaustive &amp; interpolated edge test cases ;-)</p>
+<p>Typings are also tested, mostly via <a href="https://github.com/TypeStrong/ts-expect" target="_blank" class="external"><code>ts-expect</code></a>, check the <code>xxx-typing-tests.ts</code></p>
+<a id="md:highlights" class="tsd-anchor"></a><h1 class="tsd-anchor-link">Highlights<a href="#md:highlights" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><a id="md:nested--collections--iteration" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Nested / Collections &amp; Iteration<a href="#md:nested--collections--iteration" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
+<li>
+<p><a href="/functions/loop.html">z.loop</a> returns an <code>Iterator</code> of tuples <code>[item, idxOrKey, count]</code> <strong>that work the same way</strong> with any kind of nested values (i.e collection) such as <code>Array</code>, <code>Object</code>, <code>Map</code>, <code>Set</code>, <code>Iterator</code>, <code>class</code> and more). But even <a href="/functions/isSingle.html"><code>z.isSingle</code></a> (i.e non-nested) values are iterated once, yielding the value itself (but you can opt to be strict)! Currently, in the JS world there was no way to iterate on anything in the same way, but now you can <code>for (const [keyOrIdx, item, count] of z.loop(value)) {...}</code> and it will work as expected. At the same time you <code>filter</code>, <code>map</code>, <code>take</code> etc while doing so, declaratively!</p>
+</li>
+<li>
+<p><a href="/functions/each.html">z.each</a> is a more powerful <code>_.each()</code> (which improved <code>Array.forEach</code> by allowing objects as well), that based is based on <a href="/functions/loop.html"><code>z.loop</code></a> and works with any kind of nested values (i.e collection) such as Array, Object, Map &amp; Set). It accepts a callback <code>(item, keyOrIdx, count) =&gt; {}</code> and since its built on <code>z.loop</code>, it accepts the same options so you can also <code>map</code>, <code>filter</code>, <code>take</code> while looping, and more</p>
+</li>
+<li>
+<p><a href="/functions/keys.html">z.keys</a> optionally returns ALL possible natural keys or indexes of any object (Real object, Array, Function, Map &amp; Set entries etc) with many twists: it can also bring <code>props</code> of the underlying JS object (instead of its normal keys/indexes), is supports both string &amp; Symbol props, it can filter own &amp; inherited keys, enumerable &amp; non-enumerable and top-level keys (eg <code>toString</code>). Naturally, you can choose which keys/indexes/props to include/exclude.</p>
+</li>
+<li>
+<p><a href="/functions/map.html"><code>z.map()</code></a> / <a href="/functions/filter.html"><code>z.filter()</code></a> / <a href="/functions/reduce.html"><code>z.reduce()</code></a>] / <a href="/functions/take.html"><code>z.take()</code></a> / <a href="/functions/clone.html"><code>z.clone()</code></a> / <a href="/functions/keys.html"><code>z.keys()</code></a> and more are in place, more coming soon. Most are based on the <a href="/functions/loop.html">z.loop</a> and accept the same options. They all <strong>return the same type, as the input value type</strong> (eg you pass an Array, you get an Array, with filtered/mapped/etc elements).</p>
+</li>
+</ul>
+<p>Check docs for the full list of functions &amp; usage.</p>
+<a id="md:objects--arrays" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Objects &amp; Arrays<a href="#md:objects--arrays" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
+<li>
+<p><a href="/functions/getProp.html">z.getProp</a> gets a property from a nested Property Bag (i.e objects, classes) or Array, using a custom separated string or array path, with many twists (e.g. <code>separator</code>, <code>defaultKey</code>, <code>inherited</code> etc.)</p>
+</li>
+<li>
+<p><a href="/functions/setProp.html">z.setProp</a> sets a property to a nested Property Bag (i.e objects, classes) or Array, using a string or array path, with many twists (such as <code>separator</code>, <code>create</code>, <code>overwrite</code>).</p>
+</li>
+<li>
+<p><a href="/functions/mutate.html">z.mutate</a> mutates values of an object/array, using a mutator function, if <em>agreements</em> are met.</p>
+</li>
+</ul>
+<a id="md:equality--similarity" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Equality &amp; Similarity<a href="#md:equality--similarity" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
+<li>
+<p><a href="/functions/isEqual.html">z.isEqual</a> checks if two values are deep equal, similar to <code>_.isEqual</code> but with many optional twists (<code>inherited</code>, <code>like</code>, <code>path</code>, <code>exclude</code> etc.)</p>
+</li>
+<li>
+<p><a href="/functions/isLike.html">z.isLike</a> checks if two values are deep equal, but the first value only having a subset of props being equal. Shortcut to <a href="/functions/isEqual.html"> z.isEqual</a>.</p>
+</li>
+<li>
+<p><a href="/functions/isExact.html">z.isExact</a> checks if two values are deep equal, then all refs must point to the same objects, not lookalike clones! Shortcut to <a href="/functions/isEqual.html"> z.isEqual</a>.</p>
+</li>
+<li>
+<p><a href="/functions/isDisjoint.html">z.isDisjoint</a> Checks if there are no common value between the two objects/arrays (i.e. their intersection is empty)</p>
+</li>
+<li>
+<p><a href="/functions/isRefDisjoint.html">z.isRefDisjoint</a> Given two Property Bags (i.e objects, classes) or Arrays, it returns <code>true</code> if there are <strong>NO common/shared references</strong> in their properties.</p>
+</li>
+<li>
+<p><a href="/functions/isArraySetEqual.html">z.isSetEqual</a> Checks if 2 Sets or 2 arrays are equal, without caring about the order of their items, with custom equality functions (on one, or either side).</p>
+</li>
+</ul>
+<a id="md:type-checks---runtime-type-system" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Type Checks - Runtime Type System<a href="#md:type-checks---runtime-type-system" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li>
+<p><a href="/functions/type.html">z.type</a> returns the type of the value, as a superset of <code>typeof</code> (with a compatible naming format when these co-exist), but in a much richer &amp; <em>non-Bad Parts</em> manner, recognising &amp; many more distinct &quot;real world&quot; types. For example <code>'object'</code> is considered only and for all real <code>{}</code> objects, in all object forms (i.e plain {} object, instance etc.) but does NOT include Arrays, Functions etc unlike lodash &amp; typeof. Naturally <code>null</code>'s type is well... <code>'null'</code> and not <code>'object'</code>, unlike JS's dummy <code>type</code>. Also, functions are recognised as <code>'function'</code> but ES6 Classes as <code>'class'</code>. And NaNs as just a <code>'NaN'</code>, not a number as the name stipulates! Finally, it recognises many other types, like Set, Map, Iterator etc.</p>
+</li>
+<li>
+<p><a href="/functions/functionType.html">z.functionType</a> returns the specific type of the function, eg <code>'class'</code>, <code>'Function'</code>, <code>'AsyncFunction'</code>, <code>'GeneratorFunction'</code>, <code>'AsyncGeneratorFunction'</code> &amp; <code>'ArrowFunction'</code>.</p>
+</li>
+<li>
+<p><a href="/functions/objectType.html">z.objectType</a> returns the specific type of the real object, either <code>'pojso'</code> or <code>'instance'</code>.</p>
+</li>
+</ul>
+<p>More in the docs</p>
+<a id="md:isxxx-type-checks" class="tsd-anchor"></a><h3 class="tsd-anchor-link">isXxx Type Checks<a href="#md:isxxx-type-checks" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>A plethora of missing type <code>isXxx(value)</code> checks (more than 25), that are not provided by lodash and most other libraries or are scattered around stackoverflow and other libs. In Zen they are all &amp; tested in one place. For example:</p>
+<ul>
+<li>
+<p><a href="/functions/isClass.html">z.isClass</a> checks if a value is an ES2015 class</p>
+</li>
+<li>
+<p><a href="/functions/isIterator.html">z.isIterator</a> checks if a value is any kind of Iterator // @todo: add tests</p>
+</li>
+<li>
+<p><a href="/functions/isPromise.html">z.isPromise</a> checks if a value is a (native) Promise</p>
+</li>
+<li>
+<p><a href="/functions/isRealObject.html">z.isRealObject</a> checks if a value is a Hash (a.k.a. an <code>{}</code> object in any form, such as object literal, class instance created with <code>new MyClass</code>, or object created by <code>Object.create(parent)</code>, with or without a prototype constructor etc.). There is no other way to check for this, as <code>_.isObject</code> &amp; <code>_.isPlainObject</code> don't do the trick!</p>
+</li>
+<li>
+<p><a href="/functions/isSingle.html">z.isSingle</a> checks if the value's data type is &quot;plain&quot; in terms of NOT naturally/normally having nested items (eg props, array items etc.) inside it. For example number, string etc. are single.</p>
+</li>
+<li>
+<p><a href="/functions/isMany.html">z.isMany</a> the opposite of isSingle: checks if the value's data type is &quot;nested&quot; in terms of naturally/normally having nested items (eg props, array items etc.) inside it. For example object, array, Map etc. are nested.</p>
+</li>
+<li>
+<p><a href="/functions/isPrimitive.html">z.isPrimitive</a> according to the <a href="https://developer.mozilla.org/en-US/docs/Glossary/Primitive" target="_blank" class="external">definition of &quot;primitive&quot; in JavaScript</a></p>
+</li>
+</ul>
+<p>plus many many more...</p>
+<a id="md:numbers-from-strict-to-any" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Numbers: From strict to any<a href="#md:numbers-from-strict-to-any" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>JavaScript has a lot of numbers, and it sucks when it comes to checking which is which. Trying to smooth it a bit, we have 3 levels of checks:</p>
+<ul>
+<li>
+<p><a href="/functions/isStrictNumber.html">z.isStrictNumber</a> checks if value is a strict <code>number</code>, excluding NaNs, boxed <code>new Number('123')</code>, <code>BigInt</code> &amp; <code>Infinity</code>.</p>
+</li>
+<li>
+<p><a href="/functions/isNumber.html">z.isNumber</a> checks if value is a <strong>strict number</strong> OR <code>BigInt</code> OR <code>Infinity</code>, excluding only the invalid <code>NaN</code>s &amp; boxed Numbers.</p>
+</li>
+<li>
+<p><a href="/functions/isAnyNumber.html">z.isAnyNumber</a> Checks and returns true, if value is any kind of a &quot;real number&quot;, a good candidate for <code>Number()</code>: boxed <code>new Number()</code>, <code>BigInt</code>, <code>Infinity</code> or even a string that represents a &quot;real number&quot; (i.e. any value that is resulting to a non-NaN via <code>Number(value)</code>).</p>
+</li>
+</ul>
+<a id="md:more" class="tsd-anchor"></a><h3 class="tsd-anchor-link">More...<a href="#md:more" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>More exotic ones exist - check the typedoc Docs for the full list (<code>npm run docs!</code>).</p>
+<a id="md:various-type-utils" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Various type utils<a href="#md:various-type-utils" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li>
+<p><a href="/functions/numberEnumToNumberVal.html">z.numberEnumToNumberVal</a> converts any value of either side of a <strong>numeric enum</strong> to the number side of the enum</p>
+</li>
+<li>
+<p><a href="/functions/numberEnumToStringKey.html">z.numberEnumToStringKey</a> converts any value of either side of a <strong>numeric enum</strong> to the string key side</p>
+</li>
+</ul>
+<a id="md:various--experimental--abandoned" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Various / Experimental / Abandoned<a href="#md:various--experimental--abandoned" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
+<li>
+<p><a href="/functions/isAgree.html">z.isAgree</a> checks if value is in <em>agreement</em> with one or more agreement(s) (functions or values).</p>
+</li>
+<li>
+<p><a href="/functions/arrayize.html">z.arrayize</a> converts a <code>value</code> to an array with <code>[ value ]</code>, if value is not already an array. Only <code>undefined</code> yields an empty array.</p>
+</li>
+</ul>
+<a id="md:history--codebase" class="tsd-anchor"></a><h2 class="tsd-anchor-link">History &amp; Codebase<a href="#md:history--codebase" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Some of the functions &amp; tests setup originated from outdated <a href="https://github.com/anodynos/uberscore" target="_blank" class="external">uberscore</a>. Parts of the library has originated from transpiled CoffeeScript v1, so some code (mainly testing) is a bit unreadable, as redundant code is present (excessive <code>let</code>, <code>ref</code> variables, obsolete <code>results.push()</code> in loops, not needed returns etc.</p>
+<a id="md:versions--generations" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Versions &amp; Generations<a href="#md:versions--generations" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p><strong>Zen</strong> versions follows <a href="https://docs.npmjs.com/about-semantic-versioning" target="_blank" class="external">Semantic Versioning</a>: Only when it breaks functionality (hopefully rarely) eg with current version 1.x.x, it goes from 1.x.x to 2.0.0 etc. Not when features are added. <a href="https://www.geeksforgeeks.org/introduction-semantic-versioning" target="_blank" class="external">Read more</a>.</p>
+<p>What's more interesting, is <strong>Generation</strong>, which is quite independent of Version.</p>
+<ul>
+<li>
+<p>Version 1.0.0 &amp; Gen 1.0.0 is with initial functionality, with many Not Implemented exotic features, but still immensely useful ;-) Tested enough, but not battle tested yet. Version 2.0.0, 3.0.0 etc will be just iterations, possibly breaking of those! Think of v1.0.0 G1 as 0.1.0 &amp; then v2.0.0 G1 as 0.2.0, but with semantic versioning!</p>
+</li>
+<li>
+<p>Gen 2.0.0, Version XX.0.0 (unknown yet) will start dealing with some future features stuff and a more stable release train!</p>
+</li>
+</ul>
+<a id="md:future-features---g2g3--beyond" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Future Features - G2/G3 &amp; Beyond<a href="#md:future-features---g2g3--beyond" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li>
+<p>Synergy with <code>ValidZen</code>, to augment with the <strong>Runtime Type Checks</strong> and <strong>Static &amp; Runtime Args Extraction &amp; Function Signature Validation</strong> for Functions with one or more overloaded signatures. Imagine <code>Joi</code> / <code>yup</code> / <code>zod</code> on steroids, via <code>ValidZen</code>'s &amp; <code>Zen</code>'s magic sauce.</p>
+</li>
+<li>
+<p><code>ZenType</code> to the next level: enclose your code or function in a <code>ZenType</code> block/decorators and get:</p>
+<ul>
+<li>Better TypeScript types, leveraging the vast amount of Type helpers that emerge in <code>Zen</code>, <code>type-fest</code>, <code>ValidZen</code> and others (eg imagine <code>TnumberString[]</code>)!</li>
+<li>Runtime type checks, declaratively/automagically in function calls (see <code>ValidZen</code> above). Your code should never need to check or choke on types no more!</li>
+</ul>
+</li>
+<li>
+<p>Functional Programming flavour <code>zen/fp</code> (like <code>lodash/fp</code> / <code>Ramda</code>), while supporting <code>options</code> optionally - for example:</p>
+<ul>
+<li><code>zf.filter(filterCb)(value)</code>
+-<code>zf.filter(filterCb, options)(value)</code></li>
+</ul>
+</li>
+<li>
+<p>Assess <code>loop()</code> &amp; <code>project()/map()/filter()/reduce()</code> support/interoperability for other <strong>Pull Iterables</strong> (like IxJs, nodejs  streams API etc) and more.</p>
+</li>
+<li>
+<p>Wild thinking about Push Iterators like RxJs/Signals/Push Streams? Can these API's ever converge via <code>loop()</code>, with a mediator buffer in the middle (backed by memory or a KeyValue store)?</p>
+</li>
+<li>
+<p>More functions like <code>findKey</code>, <code>filterKeys</code> &amp; more from lodash</p>
+</li>
+<li>
+<p>Refine Type System based on feedback &amp; battle tests</p>
+</li>
+<li>
+<p>Refactoring, more synergies, more options</p>
+</li>
+<li>
+<p>Improve Docs - separate stuff &amp; more examples upfront</p>
+</li>
+<li>
+<p>Fix Bugs, improve performance</p>
+</li>
+<li>
+<p>More/better tests via SpecZen</p>
+</li>
+</ul>
+<a id="md:installation--usage" class="tsd-anchor"></a><h1 class="tsd-anchor-link">Installation &amp; Usage<a href="#md:installation--usage" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><pre><code>npm i @neozen/zen
+</code></pre>
+<p>Then in your code (ES Modules or TypeScript):</p>
+<pre><code>import * as z from '@neozen/zen'
+</code></pre>
+<p>and then</p>
+<pre><code>z.getProp(obj, 'a/b/c')
+</code></pre>
+<p>OR</p>
+<pre><code>import { getProp, setProp } as z from '@neozen/zen'
+</code></pre>
+<p>and then</p>
+<pre><code>setProp(obj, 'a.b.c', 123, {seperator: '.'} )
+</code></pre>
+<p>Similarly, in CommonJS:</p>
+<pre><code>const z = require('@neozen/zen')
+</code></pre>
+<p>OR</p>
+<pre><code>const { getProp, setProp } = require('@neozen/zen')
+</code></pre>
+<a id="md:developing--testing-clizen" class="tsd-anchor"></a><h1 class="tsd-anchor-link">Developing &amp; Testing: CliZen<a href="#md:developing--testing-clizen" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><a id="md:clizen" class="tsd-anchor"></a><h2 class="tsd-anchor-link">CliZen<a href="#md:clizen" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Zen uses CliZen, a collection of conventions around npm scripts, that makes it easier to develop &amp; test projects, by providing a simple &amp; consistent interface. CliZen allows you to build, test, watch for changes and re-run, generate documentation etc via a simple &amp; consistent CLI.</p>
+<a id="md:clizen-conventions" class="tsd-anchor"></a><h3 class="tsd-anchor-link">CliZen Conventions<a href="#md:clizen-conventions" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>You only need these 2 conventions to understand the scripts:</p>
+<ul>
+<li>
+<p><code>~</code> (Post-fix) means it opens one or more <code>neoTerm</code> consoles <strong>and returns control</strong>, perhaps after some sleep. It typically opens multiple <code>neoTerm</code> consoles, some might be a one-off command that closes, but typically they are xxx! commands, that just stay open and execute on changes etc</p>
+</li>
+<li>
+<p><code>!</code> (Post-fix) eg <code>test!</code> means it's a <code>test:watch</code>, so control is NOT returned once it runs. These are tasks like <code>test:watch</code> or <code>build:watch</code> (we now write them as <code>build!</code> &amp; <code>test!</code>) which re-run when we have some signal, like code changes etc. When you can run in your current Terminal, it blocks your input, and you need to open a new terminal manually. So they will probably be invoked to run inside their own neoTerm, by some other <code>task~</code> that groups them together logically.</p>
+</li>
+</ul>
+<p>For example <code>dev~: 't -npr build! test! serve!'</code> will call them serially, and each will open in it own <code>neoTerm</code>. These commands typically have a plain equivalent, that runs once &amp; finishes (eg the straight <code>test</code> without watch, used in ci etc). These 2 should behave roughly the same (and the <code>'task!'</code> could call into the plain <code>'task'</code> via extra <code>--watch</code> flags or nodemon etc).</p>
+<p>In rare cases, the simple <code>xxx!</code> can't run in one terminal (eg having 2 different kind of tests running at the same time, say <code>jest!</code> and <code>assert!</code>), then we only have <code>test~</code> which calls <code>t jest! assert!</code> to open two separate test in different <code>neoTerm</code> consoles. In these cases, we only note the <code>tilda~</code>, as the watch inside is assumed.</p>
+<a id="md:neoterm-in-clizen" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><code>neoTerm</code> in CliZen<a href="#md:neoterm-in-clizen" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>All npm scripts that are post-fixed with a <strong>tilde</strong> (i.e <code>~</code>), for example <code>npm run dev~</code>, rely on <a href="https://neoterm.dev" target="_blank" class="external">neoTerm</a> that opens new <code>neoTerm</code> Terminals / Consoles where it is required, to separate the building, testing etc processes and thus make development &amp; testing easier to follow. You can mimic what <code>neoTerm</code> does, by executing each npm script contained in it at a separate terminal window manually ;-)</p>
+<a id="md:development-installation" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Development Installation<a href="#md:development-installation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Zen is part of the <code>neozen-tools</code> <a href="https://lerna.js.org" target="_blank" class="external">lerna monorepo</a>.</p>
+<p>To start development installation, clone the repo locally, cd to the repo's root and execute:</p>
+<pre><code>$ npm install
+</code></pre>
+<p>to install the repo's root dependencies.</p>
+<p>You'll also need <code>npm-run-all</code> globally (as local <code>npx npm-run-all</code> fails for some reason):</p>
+<pre><code>$ npm install -g npm-run-all
+</code></pre>
+<p>Finally execute:</p>
+<pre><code>$ npm run boot
+</code></pre>
+<p>This will run a boostrap pipeline that installs all dependencies inside <code>./packages</code>, builds all packages, and installs locally all sibling deps via DistZen.</p>
+<p><strong>Note</strong>: DO NOT run a normal <code>npm install</code> inside each package, as this will fail (since it can not find sibling dependencies).</p>
+<p>You can issue an:</p>
+<pre><code>$ npm run test
+</code></pre>
+<p>inside neozen-tools root, to execute all tests in all packages &amp; verify everything's OK.</p>
+<p>NOTE: Tests in src/code/loopzen/<strong>tests</strong>/all-typings are generated and are literally HUGE! Nodejs crashes with default RAM, so you need to run them with <code> export NODE_OPTIONS=&quot;--max-old-space-size=8192&quot;</code> on your node (might work with less). Also note they will take a long time to run (up to 5 or 10 minutes, depending on your machine), so you might want to run them separately:</p>
+<ul>
+<li>
+<p>This will run ONLY those long tests</p>
+<p>$ npm run test:long!</p>
+</li>
+<li>
+<p>And this will run the rest of the tests</p>
+<p>$ npm run test:short!</p>
+</li>
+</ul>
+<p>You can also configure other &quot;workbench&quot; tests when developing, examples in package.json</p>
+<a id="md:development" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Development<a href="#md:development" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>For the quickest and fullest development cycle for Zen, you can issue:</p>
+<pre><code>$ cd packages/zen
+
+$ npm run dev~
+</code></pre>
+<p><em>(mind the tilde ~)</em> This starts the development environment, which watches for changes and re-builds &amp; re-tests the project (along with the assert-based integration light test suite) and also watch-builds and serves the documentation. Each of these tasks is running in a separate terminal window (4 in total) which relies on <a href="https://neoterm.dev" target="_blank" class="external">neoTerm</a> (preview only - not fully released).</p>
+<p>You can also run the following commands in 3 separate terminal windows to mimic it:</p>
+<pre><code>$ npm run build:watch
+$ npm run mocha:watch    
+$ npm run docs:watch
+</code></pre>
+<p>or you can pick which ones you need each time ;-)</p>
+<a id="md:testing" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Testing<a href="#md:testing" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Assuming the project has being built, execute</p>
+<pre><code>$ npm test
+</code></pre>
+<p>which runs Mocha based tests and then generates the assert-based integration test suite and executes it. It runs only once and stops.</p>
+<p>Similarly, you can also run <code>$ npm run test:coverage</code> to see the test coverage.</p>
+<p>WARNING: Tests will fail with nodejs &lt; 20 &amp; you need <code>NODE_OPTIONS=--max_old_space_size=8096</code> in your environment. Make sure <code>$ node -e 'const ram=v8.getHeapStatistics().heap_size_limit/(1024*1024);const low=ram&lt;8000;console[low ? </code>error<code>:</code>log<code>](</code>${ low ? &quot;WARNING&quot; : &quot;NOTE&quot;} nodejs heap_size_limit RAM =<code>, ram)'</code> returns at least <code>8144</code> Mbytes</p>
+<p>NOTE: tests (&amp; build) take a huge time to run (5-15 minutes, depending on machine), cause a lot of combinations are generated (if generation is on, see <code>src/test-utils/generate.ts</code>)!</p>
+<a id="md:testing-with-watch" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Testing with watch<a href="#md:testing-with-watch" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>Execute</p>
+<pre><code>$ npm test!~
+</code></pre>
+<p><em>(mind the tilde ~)</em>
+which (assuming the project has been build) runs the tests in 2 separate terminal windows (via <a href="https://neoterm.dev" target="_blank" class="external">neoTerm</a>) and watches for changes to re-run them.</p>
+<p>So for now you run this in a separate terminal window:</p>
+<pre><code>$ npm run mocha:watch
+</code></pre>
+<a id="md:testing-on-multiple-node-engines-via-docker-nixwsl-only" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Testing on multiple node engines via Docker (*Nix/WSL only)<a href="#md:testing-on-multiple-node-engines-via-docker-nixwsl-only" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>Zen is tested against the node version contained in <code>.docker-node-versions</code> file, which is currently</p>
+<ul>
+<li>22.11.0</li>
+<li>20.18.0</li>
+</ul>
+<p>To test against all <code>.docker-node-versions</code>, first execute <code>$ chmod +x z/*</code> to make the scripts executable. Then issue:</p>
+<pre><code>$ npm run test:all_node_versions
+</code></pre>
+<p>To test a specific node version, issue:</p>
+<pre><code>$ npm run test:node_version 20.18.0
+</code></pre>
+<a id="md:typescript-versions" class="tsd-anchor"></a><h2 class="tsd-anchor-link">TypeScript versions<a href="#md:typescript-versions" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>The Zen library is best used with TS version &gt; 5.0, ideally <code>5.6.3</code> that is used to compile and run all the tests. It has been tested that it compiles with projects on <code>5.0.2</code> &amp; <code>4.9.5</code> but its advised that <code>5.x</code> is used.</p>
+<a id="md:documentation" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Documentation<a href="#md:documentation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>To generate the documentation, execute:</p>
+<pre><code>$ npm run docs:build
+</code></pre>
+<p>To generate the documentation while watching for changes and regenerating and also serve via a local-web-server, execute:</p>
+<pre><code>$ npm run docs:watch
+</code></pre>
+<p>These generate docs inside <code>./dist/docs-html</code> directory, in HTML format using <a href="http://typedoc.org/" target="_blank" class="external">TypeDoc</a>. You can serve via a local web server, by executing:</p>
+<pre><code>$ npm run docs:serve
+</code></pre>
+<p>and then browse to <a href="http://localhost:8091" target="_blank" class="external">http://localhost:8091</a></p>
+<a id="md:acknowledgements-references-inspirations--useful-links--" class="tsd-anchor"></a><h1 class="tsd-anchor-link">Acknowledgements, references, inspirations &amp; useful links ;-)<a href="#md:acknowledgements-references-inspirations--useful-links--" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><ul>
+<li><a href="https://zirkelc.dev/posts/extract-class-methods" target="_blank" class="external">https://zirkelc.dev/posts/extract-class-methods</a></li>
+<li><a href="https://github.com/sindresorhus/type-fest" target="_blank" class="external">type-fest</a></li>
+<li><a href="https://blog.logrocket.com/pattern-matching-type-safety-typescript/" target="_blank" class="external">https://blog.logrocket.com/pattern-matching-type-safety-typescript/</a></li>
+<li>@todo: add others / stackoverflow, keysFiltered etc.</li>
+</ul>
+<a id="md:license" class="tsd-anchor"></a><h1 class="tsd-anchor-link">License<a href="#md:license" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><p>MIT NON-AI</p>
+</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#md:zen-100"><span>Zen 1.0.0</span></a><ul><li><a href="#md:main-features"><span>Main features</span></a></li><li><ul><li><a href="#md:type-checking-runtime--compile-time"><span>Type <wbr/>Checking (<wbr/>Runtime &amp; <wbr/>Compile time)</span></a></li><li><a href="#md:iteration--projections-on-steroids-via-generators"><span>Iteration &amp; <wbr/>Projections on steroids, via <wbr/>Generators</span></a></li><li><a href="#md:typed--tested"><span>Typed &amp; tested</span></a></li></ul></li></ul><a href="#md:the-runtime-type-checking-system"><span>The <wbr/>Runtime <wbr/>Type <wbr/>Checking <wbr/>System</span></a><ul><li><a href="#md:native-iteration-on-anything"><span>Native <wbr/>Iteration on anything</span></a></li><li><a href="#md:project--filter-anything"><span>Project &amp; <wbr/>Filter <wbr/>Anything</span></a></li><li><a href="#md:keys--props-included"><span>Keys &amp; <wbr/>Props <wbr/>Included</span></a></li><li><a href="#md:options-are-king"><span>Options are <wbr/>King</span></a></li><li><a href="#md:lib--type-system-is-typed"><span>Lib &amp; <wbr/>Type <wbr/>System is <wbr/>Typed</span></a></li><li><a href="#md:lib--type-system-is-tested"><span>Lib &amp; <wbr/>Type <wbr/>System is <wbr/>Tested</span></a></li></ul><a href="#md:highlights"><span>Highlights</span></a><ul><li><a href="#md:nested--collections--iteration"><span>Nested / <wbr/>Collections &amp; <wbr/>Iteration</span></a></li><li><a href="#md:objects--arrays"><span>Objects &amp; <wbr/>Arrays</span></a></li><li><a href="#md:equality--similarity"><span>Equality &amp; <wbr/>Similarity</span></a></li><li><ul><li><a href="#md:type-checks---runtime-type-system"><span>Type <wbr/>Checks -<wbr/> <wbr/>Runtime <wbr/>Type <wbr/>System</span></a></li><li><a href="#md:isxxx-type-checks"><span>is<wbr/>Xxx <wbr/>Type <wbr/>Checks</span></a></li><li><a href="#md:numbers-from-strict-to-any"><span>Numbers: <wbr/>From strict to any</span></a></li><li><a href="#md:more"><span>More...</span></a></li><li><a href="#md:various-type-utils"><span>Various type utils</span></a></li></ul></li><li><a href="#md:various--experimental--abandoned"><span>Various / <wbr/>Experimental / <wbr/>Abandoned</span></a></li><li><a href="#md:history--codebase"><span>History &amp; <wbr/>Codebase</span></a></li><li><a href="#md:versions--generations"><span>Versions &amp; <wbr/>Generations</span></a></li><li><ul><li><a href="#md:future-features---g2g3--beyond"><span>Future <wbr/>Features -<wbr/> <wbr/>G2/<wbr/>G3 &amp; <wbr/>Beyond</span></a></li></ul></li></ul><a href="#md:installation--usage"><span>Installation &amp; <wbr/>Usage</span></a><a href="#md:developing--testing-clizen"><span>Developing &amp; <wbr/>Testing: <wbr/>Cli<wbr/>Zen</span></a><ul><li><a href="#md:clizen"><span>Cli<wbr/>Zen</span></a></li><li><ul><li><a href="#md:clizen-conventions"><span>Cli<wbr/>Zen <wbr/>Conventions</span></a></li><li><a href="#md:neoterm-in-clizen"><span>neo<wbr/>Term in <wbr/>Cli<wbr/>Zen</span></a></li></ul></li><li><a href="#md:development-installation"><span>Development <wbr/>Installation</span></a></li><li><a href="#md:development"><span>Development</span></a></li><li><a href="#md:testing"><span>Testing</span></a></li><li><ul><li><a href="#md:testing-with-watch"><span>Testing with watch</span></a></li><li><a href="#md:testing-on-multiple-node-engines-via-docker-nixwsl-only"><span>Testing on multiple node engines via <wbr/>Docker (*<wbr/>Nix/WSL only)</span></a></li></ul></li><li><a href="#md:typescript-versions"><span>Type<wbr/>Script versions</span></a></li><li><a href="#md:documentation"><span>Documentation</span></a></li></ul><a href="#md:acknowledgements-references-inspirations--useful-links--"><span>Acknowledgements, references, inspirations &amp; useful links ;-<wbr/>)</span></a><a href="#md:license"><span>License</span></a></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="modules.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-1"></use></svg><span>@neozen/zen</span></a><ul class="tsd-small-nested-navigation" id="tsd-nav-container" data-base="."><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>

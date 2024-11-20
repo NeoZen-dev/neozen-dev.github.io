@@ -1,0 +1,40 @@
+{
+  "name": "neozen-dev.github.io",
+  "version": "1.0.0",
+  "description": "Website neozen.dev including all project's docs",
+  "main": "index.js",
+  "scripts": {
+    "***************** Website & Docs helper *****": "",
+
+    "################# Copy Docs from other repos": "",
+    "     ### Copy everything": "",
+    "copy:docs:all": "npm-run-all clean:docs:all copy:docs:neozen-tools",
+
+    "copy:docs:neozen-tools": "npm-run-all \"copy:docs:neozen-tools:*  --clean\"",
+    "copy:docs:neozen-tools!": "npm-run-all --parallel \"copy:docs:neozen-tools:* -- --clean --watch --verbose --update\"",
+
+    "     ### Copy each project docs separatelly": "Because cpx ../foo/*/bar/baz copies the whole bar/baz dirs",
+    "copy:docs:neozen-tools:zen": "cpx \"../neozen-tools/packages/zen/dist/docs-html/**/*\" \"zen\"",
+    "copy:docs:neozen-tools:logzen": "cpx \"../neozen-tools/packages/logzen/dist/docs-html/**/*\" \"logzen\"",
+    "copy:docs:neozen-tools:speczen": "cpx \"../neozen-tools/packages/speczen/dist/docs-html/**/*\" \"speczen\"",
+    "copy:docs:neozen-tools:validzen": "cpx \"../neozen-tools/packages/validzen/dist/docs-html/**/*\" \"validzen\"",
+    "copy:docs:neozen-tools:distzen": "cpx \"../neozen-tools/packages/distzen/dist/docs-html/**/*\" \"distzen\""
+  },
+  "devDependencies": {
+    "cpx2": "^8.0.0",
+    "mkdirp": "^3.0.1",
+    "nodemon": "^3.1.7",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^6.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NeoZen-dev/neozen-dev.github.io.git"
+  },
+  "author": "AnoDyNoS",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NeoZen-dev/neozen-dev.github.io/issues"
+  },
+  "homepage": "https://github.com/NeoZen-dev/neozen-dev.github.io#readme"
+}
