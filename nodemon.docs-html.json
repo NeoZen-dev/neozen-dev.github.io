@@ -1,0 +1,12 @@
+{
+  "ext": "*",
+  "watch": [
+    "../neozen-tools/packages/zen/dist/docs-html/**/*",
+    "../neozen-tools/packages/logzen/dist/docs-html/**/*",
+    "../neozen-tools/packages/validzen/dist/docs-html/**/*",
+    "../neozen-tools/packages/speczen/dist/docs-html/**/*",
+    "../neozen-tools/packages/distzen/dist/docs-html/**/*"
+  ],
+  "verbose": false,
+  "delay": 2000
+}
