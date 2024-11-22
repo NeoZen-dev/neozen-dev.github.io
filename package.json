@@ -4,10 +4,14 @@
   "description": "Website neozen.dev including all project's docs",
   "main": "index.js",
   "scripts": {
-    "***************** Website & Docs helper *****": "",
-    "dev!": "npm run serve & (sleep 2 && npm run copy!)",
+    "***************** Website & Docs Build starters *****": "",
 
+    "# Build docs of neozen-tools & copy them here": "",
     "start":"cd ../neozen-tools && npm-run-all clean build:docs && cd ../neozen-dev.github.io && npm-run-all copy:docs:neozen-tools",
+
+    "# Serve website & copy:watch docs-html from neozen-tools dist/docs-html": "",
+    "dev!": "npm run serve & (sleep 2 && npm run copy!)",
+    "dev:full!": "npm run clean && cd ../neozen-tools && npm-run-all clean docs~ && cd ../neozen-dev.github.io && sleep 5 && npm run serve",
 
     "serve": "bundle exec jekyll serve",
 
@@ -27,6 +31,7 @@
     "copy:docs:neozen-tools:validzen": "cpx \"../neozen-tools/packages/validzen/dist/docs-html/**/*\" \"validzen\"",
     "copy:docs:neozen-tools:distzen": "cpx \"../neozen-tools/packages/distzen/dist/docs-html/**/*\" \"distzen\"",
 
+    "clean": "npm run clean:docs",
     "clean:docs": "npx rimraf logzen speczen validzen distzen"
   },
   "devDependencies": {
