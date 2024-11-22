@@ -7,21 +7,20 @@
     "***************** Website & Docs Build starters *****": "",
 
     "# Build docs of neozen-tools & copy them here": "",
-    "start":"cd ../neozen-tools && npm-run-all clean build:docs && cd ../neozen-dev.github.io && npm-run-all copy:docs:neozen-tools",
+    "start": "cd ../neozen-tools && npm-run-all clean build:docs && cd ../neozen-dev.github.io && npm-run-all copy:docs:neozen-tools",
 
     "# Serve website & copy:watch docs-html from neozen-tools dist/docs-html": "",
     "dev!": "npm run serve & (sleep 2 && npm run copy!)",
-    "dev:full!": "npm run clean && cd ../neozen-tools && npm-run-all clean docs~ && cd ../neozen-dev.github.io && sleep 5 && npm run serve",
-
+    "dev:full~": "npm run clean && cd ../neozen-tools && npm-run-all clean docs~ && cd ../neozen-dev.github.io && sleep 10 && npm run dev!",
     "serve": "bundle exec jekyll serve",
 
     "################# Copy Docs from other repos": "",
     "     ### Copy everything": "",
     "copy!": "npm-run-all copy:docs:all!",
-    "copy:docs:all!":"nodemon --config nodemon.docs-html.json --exec npm run copy:docs:all",
+    "copy:docs:all!": "nodemon --config nodemon.docs-html.json --exec npm run copy:docs:all",
     "copy:docs:all": "npm-run-all copy:docs:neozen-tools",
-
     "copy:docs:neozen-tools": "npm-run-all \"copy:docs:neozen-tools:* -- --update --verbose\"",
+
     "## cpx FAILS with --watch, using nodemon copy:docs:neozen-tools!": "npm-run-all --parallel \"copy:docs:neozen-tools:* -- --watch --verbose --update\"",
 
     "     ### Copy each project docs separatelly": "Because cpx ../foo/*/bar/baz copies the whole bar/baz dirs",
@@ -31,15 +30,28 @@
     "copy:docs:neozen-tools:validzen": "cpx \"../neozen-tools/packages/validzen/dist/docs-html/**/*\" \"validzen\"",
     "copy:docs:neozen-tools:distzen": "cpx \"../neozen-tools/packages/distzen/dist/docs-html/**/*\" \"distzen\"",
 
+    "################# Chores, clean and installing": "",
     "clean": "npm run clean:docs",
-    "clean:docs": "npx rimraf logzen speczen validzen distzen"
+    "clean:docs": "npx rimraf logzen speczen validzen distzen",
+
+    "start_nps": "nps"
   },
   "devDependencies": {
+    "@markforged/nps": "^5.11.2",
+    "any-shell-escape": "^0.1.1",
+    "common-tags": "^1.8.2",
+    "concurrently": "^9.1.0",
     "cpx2": "^8.0.0",
+    "cpy-cli": "^5.0.0",
+    "cross-env": "^7.0.3",
+    "is-windows": "^1.0.2",
     "mkdirp": "^3.0.1",
+    "ncp": "^2.0.0",
     "nodemon": "^3.1.7",
     "npm-run-all": "^4.1.5",
-    "rimraf": "^6.0.1"
+    "prettier": "^3.3.3",
+    "rimraf": "^6.0.1",
+    "upath": "^2.0.1"
   },
   "repository": {
     "type": "git",
@@ -50,5 +62,5 @@
   "bugs": {
     "url": "https://github.com/NeoZen-dev/neozen-dev.github.io/issues"
   },
-  "homepage": "https://github.com/NeoZen-dev/neozen-dev.github.io#readme"
+  "homepage": "https://github.com/NeoZen-dev/neozen-dev.github.io"
 }
