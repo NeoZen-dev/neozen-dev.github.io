@@ -1,6 +1,6 @@
 const npsUtils = require('./nps-utils')
 
-const packages = ['zen', 'logzen']
+const packages = ['zen', 'logzen', 'speczen', 'validzen', 'distzen']
 
 /*
 This is a PoC for nps, works OKish, but
@@ -50,18 +50,18 @@ module.exports = {
     dev: {
       script: `echo No 'nps dev' default, it can be run only via neoTerm as 'nps dev:full~'`,
       watch: {
-        script: 'nps serve & (sleep 2 && nps copy.watch)',
         description: 'Serve website & copy:watch docs-html from neozen-tools dist/docs-html',
+        script: 'nps serve & (sleep 2 && nps copy.watch)',
       },
       // ~ means via neoTerm
       'full~': {
+        description:
+          'Start each neozen-tools docs~ (watch build docs in separate neoTerm for each package) & then serve web site',
         script: npsUtils.series(
           'nps clean',
           'cd ../neozen-tools && npm-run-all clean docs~', // start all docs in new neoTerm consoles
           'cd ../neozen-dev.github.io && sleep 10 && nps dev.watch', // come back and serve, while copying new files ;-)
         ),
-        description:
-          'Start each neozen-tools docs~ (watch build docs in separate neoTerm for each package) & then serve web site',
       },
     },
     serve: {

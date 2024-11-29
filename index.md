@@ -1,9 +1,9 @@
 ---
-title: NeoZen.dev Home
+title: NeoZen.dev Home - ALPHA WIP DOCS 
 layout: home
 ---
 
-
+# #### DOCS ARE ALPHA WIP ###
 
 NeoZen offers the awesome projects:
 
@@ -13,10 +13,10 @@ NeoZen offers the awesome projects:
 * [LogZen](/logzen/index.html)
 * [ValidZen](/validzen/index.html)
 * [SpecZen](/speczen/index.html)
-* [distzen](/distzen/index.html)
+* [DistZen](/distzen/index.html)
 
 ...more coming soon ;-)
 
 ----
 
-[Github] () 
+Github: [https://github.com/NeoZen-dev/neozen-tools](https://github.com/NeoZen-dev/neozen-tools) 
